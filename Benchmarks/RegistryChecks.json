@@ -1,0 +1,18 @@
+{
+  "SchemaVersion": "1.0",
+  "CheckSchema": {
+    "ControlID": "string",
+    "Category": "string",
+    "SubCategory": "string",
+    "Title": "string",
+    "RegistryHive": "HKLM | HKCU | HKCR | HKU | HKCC",
+    "RegistryPath": "string; relative to RegistryHive",
+    "ValueName": "string",
+    "Comparison": "Equals | NotEquals | GreaterThan | LessThan | Exists | NotExists | Boolean",
+    "Expected": "string | number | boolean; unused by Exists and NotExists",
+    "Severity": "Critical | High | Medium | Low | Informational",
+    "Reference": "string",
+    "Remediation": "string"
+  },
+  "Checks": []
+}

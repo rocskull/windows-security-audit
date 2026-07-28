@@ -1,0 +1,5 @@
+Logs/
+Reports/
+AuditOutputTest/
+AuditVerification/
+*.log

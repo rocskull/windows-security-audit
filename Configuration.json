@@ -1,0 +1,36 @@
+{
+  "FrameworkName": "Windows Configuration Review Framework",
+  "Version": "1.0.0",
+  "SupportedPlatforms": [
+    "Windows 10",
+    "Windows 11"
+  ],
+  "AuditMode": "ReadOnly",
+  "EnableSystemChanges": false,
+  "ReportFormats": [
+    "HTML",
+    "CSV",
+    "JSON",
+    "Excel"
+  ],
+  "LogFolder": "Logs",
+  "ReportFolder": "Reports",
+  "ModulesFolder": "Modules",
+  "BenchmarksFolder": "Benchmarks",
+  "Defaults": {
+    "Severity": "Medium",
+    "IncludeEvidence": true,
+    "IncludeRecommendations": true,
+    "ResultStatuses": [
+      "PASS",
+      "FAIL",
+      "WARNING",
+      "NOT APPLICABLE"
+    ]
+  },
+  "Accounts": {
+    "AllowedLocalAdministrators": [],
+    "LastLogonWarningDays": 90
+  },
+  "Modules": []
+}
