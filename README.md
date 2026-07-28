@@ -2,6 +2,8 @@
 
 A modular, read-only PowerShell framework for reviewing Windows security configuration. It gathers evidence, returns structured findings, and generates HTML, CSV, JSON, and Excel reports. It does not change Windows configuration.
 
+This tool performs read-only Windows security checks aligned with CIS Benchmark guidance and provides remediation recommendations. It is intended to support security reviews and does not replace a formal CIS compliance assessment.
+
 ## Quick start
 
 1. Open PowerShell in this project directory.
