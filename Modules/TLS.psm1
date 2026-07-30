@@ -11,3 +11,10 @@ function Invoke-Audit {
     if($suiteStatus -eq 'WARNING'){New-TlsResult -ControlID 'TLS-008' -Title 'Weak Cipher Suites' -Expected 'No weak cipher suites are enabled' -Actual 'Unavailable' -Status WARNING -Severity High -Evidence $suiteEvidence -Remediation 'Review cipher suites and remove weak algorithms.'}else{$weak=@($cipherSuites|Where-Object{$_ -match '(?i)(RC4|3DES|(^|_)DES_|NULL|EXPORT|MD5|TLS_RSA_)'});New-TlsResult -ControlID 'TLS-008' -Title 'Weak Cipher Suites' -Expected 'No RC4, DES, 3DES, NULL, EXPORT, MD5, or static-RSA cipher suites' -Actual $(if($weak.Count){$weak -join '; '}else{'None found'}) -Status $(if($weak.Count){'FAIL'}else{'PASS'}) -Severity High -Evidence ('Weak cipher suite count: {0}.' -f $weak.Count) -Remediation 'Remove weak cipher suites and prioritize modern ECDHE AES-GCM or ChaCha20 suites.'}
 }
 Export-ModuleMember -Function Invoke-Audit
+<#
+.SYNOPSIS
+    Provides legacy Schannel and TLS advisory checks.
+.DESCRIPTION
+    Retained for compatibility with framework v1 and excluded from the v2 CIS
+    compliance score unless represented by a benchmark definition.
+#>

@@ -1,0 +1,424 @@
+{
+  "SchemaVersion": "1.0",
+  "GeneratedBy": "Build-BenchmarkDefinitions.py",
+  "Benchmarks": [
+    {
+      "FileName": "CIS_Microsoft_Defender_Antivirus_1.0.0.json",
+      "Id": "CIS_Microsoft_Defender_Antivirus",
+      "Name": "CIS Microsoft Defender Antivirus Benchmark",
+      "Version": "1.0.0",
+      "Variant": "Supplemental",
+      "Platform": {
+        "Product": "Microsoft Defender Antivirus",
+        "ProductType": "Supplemental",
+        "BuildMinimum": null,
+        "BuildMaximum": null
+      },
+      "SourceDocument": "CIS_Microsoft_Defender_Antivirus_Benchmark_v1.0.0.pdf",
+      "Archived": false,
+      "Supplemental": true,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 59,
+      "Sha256": "76119f0f6943827aaf977435e54d495aaeb8efc0d6551ae669d52d8d8190600e"
+    },
+    {
+      "FileName": "CIS_Windows10_4.0.0.json",
+      "Id": "CIS_Windows10_Enterprise",
+      "Name": "CIS Microsoft Windows 10 Enterprise Benchmark",
+      "Version": "4.0.0",
+      "Variant": "Enterprise",
+      "Platform": {
+        "Product": "Windows 10",
+        "ProductType": "Workstation",
+        "BuildMinimum": 10240,
+        "BuildMaximum": 21999
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_10_Enterprise_Benchmark_v4.0.0.pdf",
+      "Archived": false,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 488,
+      "Sha256": "2371a4387248f7d18123ded0fd04062b832cf2c38b65d18faeecfae33759720e"
+    },
+    {
+      "FileName": "CIS_Windows10_Enterprise_1703_1.3.0.json",
+      "Id": "CIS_Windows10_Enterprise_1703",
+      "Name": "CIS Microsoft Windows 10 Enterprise Release 1703 Benchmark",
+      "Version": "1.3.0",
+      "Variant": "Enterprise",
+      "Platform": {
+        "Product": "Windows 10",
+        "ProductType": "Workstation",
+        "BuildMinimum": 15063,
+        "BuildMaximum": 15063
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_10_Enterprise_Release_1703_Benchmark_v1.3.0.pdf",
+      "Archived": true,
+      "Supplemental": false,
+      "AutomationSelection": "InferredMachineReadableAuditProcedure",
+      "AutomatedControlCount": 406,
+      "Sha256": "6c0d2ae593ca5aa28b82155c8da5eac411d1bfe2dcebcb96120d49152c23af4f"
+    },
+    {
+      "FileName": "CIS_Windows10_Standalone_4.0.0.json",
+      "Id": "CIS_Windows10_Standalone",
+      "Name": "CIS Microsoft Windows 10 Stand-alone Benchmark",
+      "Version": "4.0.0",
+      "Variant": "Standalone",
+      "Platform": {
+        "Product": "Windows 10",
+        "ProductType": "Workstation",
+        "BuildMinimum": 10240,
+        "BuildMaximum": 21999
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_10_Stand-alone_Benchmark_v4.0.0.pdf",
+      "Archived": false,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 448,
+      "Sha256": "95541d15d6eaeff4f5837a3210414113692141b02ec1b9fd9d4671cb17e01c01"
+    },
+    {
+      "FileName": "CIS_Windows11_5.1.0.json",
+      "Id": "CIS_Windows11_Enterprise",
+      "Name": "CIS Microsoft Windows 11 Enterprise Benchmark",
+      "Version": "5.1.0",
+      "Variant": "Enterprise",
+      "Platform": {
+        "Product": "Windows 11",
+        "ProductType": "Workstation",
+        "BuildMinimum": 22000,
+        "BuildMaximum": null
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_11_Enterprise_Benchmark_v5.1.0.pdf",
+      "Archived": false,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 533,
+      "Sha256": "46bad43ed227edeb289e787e823118dba92431e7958481cc9bce44fb3b48b1ab"
+    },
+    {
+      "FileName": "CIS_Windows11_Standalone_5.0.0.json",
+      "Id": "CIS_Windows11_Standalone",
+      "Name": "CIS Microsoft Windows 11 Stand-alone Benchmark",
+      "Version": "5.0.0",
+      "Variant": "Standalone",
+      "Platform": {
+        "Product": "Windows 11",
+        "ProductType": "Workstation",
+        "BuildMinimum": 22000,
+        "BuildMaximum": null
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_11_Stand-alone_Benchmark_v5.0.0.pdf",
+      "Archived": false,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 486,
+      "Sha256": "901fa71ad5a803050a5b675d552ba87c56ca12556b11efe446e1d598bcbc7cba"
+    },
+    {
+      "FileName": "CIS_Windows7_Workstation_3.2.0_ARCHIVE.json",
+      "Id": "CIS_Windows7_Workstation",
+      "Name": "CIS Microsoft Windows 7 Workstation Benchmark",
+      "Version": "3.2.0",
+      "Variant": "General",
+      "Platform": {
+        "Product": "Windows 7",
+        "ProductType": "Workstation",
+        "BuildMinimum": 7600,
+        "BuildMaximum": 7601
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_7_Workstation_Benchmark_v3.2.0_ARCHIVE.pdf",
+      "Archived": true,
+      "Supplemental": false,
+      "AutomationSelection": "InferredMachineReadableAuditProcedure",
+      "AutomatedControlCount": 343,
+      "Sha256": "b6187d5c4f149c4527b87667f12811921f9d75845c9a424cccf7f9acb8f95075"
+    },
+    {
+      "FileName": "CIS_Windows8.1_Workstation_2.4.0_ARCHIVE.json",
+      "Id": "CIS_Windows8.1_Workstation",
+      "Name": "CIS Microsoft Windows 8.1 Workstation Benchmark",
+      "Version": "2.4.0",
+      "Variant": "General",
+      "Platform": {
+        "Product": "Windows 8.1",
+        "ProductType": "Workstation",
+        "BuildMinimum": 9600,
+        "BuildMaximum": 9600
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_8.1_Workstation_Benchmark_v2.4.0_ARCHIVE.pdf",
+      "Archived": true,
+      "Supplemental": false,
+      "AutomationSelection": "InferredMachineReadableAuditProcedure",
+      "AutomatedControlCount": 365,
+      "Sha256": "bfe9ba0e54c3fd11003a640aff16cd796855460ea9e45e5e741dafea38a0d7e9"
+    },
+    {
+      "FileName": "CIS_Windows8_1.0.0_ARCHIVE.json",
+      "Id": "CIS_Windows8",
+      "Name": "CIS Microsoft Windows 8 Benchmark",
+      "Version": "1.0.0",
+      "Variant": "General",
+      "Platform": {
+        "Product": "Windows 8",
+        "ProductType": "Workstation",
+        "BuildMinimum": 9200,
+        "BuildMaximum": 9200
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_8_Benchmark__imported__v1.0.0_ARCHIVE.pdf",
+      "Archived": true,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 327,
+      "Sha256": "5a6fec132277d8ff704dd696b9448e7012b6f1d5924808f42c91ea8f5d6a3941"
+    },
+    {
+      "FileName": "CIS_Server2003_3.1.0_ARCHIVE.json",
+      "Id": "CIS_Server2003",
+      "Name": "CIS Microsoft Windows Server 2003 Benchmark",
+      "Version": "3.1.0",
+      "Variant": "Standard",
+      "Platform": {
+        "Product": "Windows Server 2003",
+        "ProductType": "Server",
+        "BuildMinimum": 3790,
+        "BuildMaximum": 3790
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_Server_2003_Benchmark__imported__v3.1.0_ARCHIVE.pdf",
+      "Archived": true,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 119,
+      "Sha256": "ad4fea2fbd4c9122e7861a7c9a1662b65e7be65877012e39621a3118edf5f4c3"
+    },
+    {
+      "FileName": "CIS_Server2008_3.3.0_ARCHIVE.json",
+      "Id": "CIS_Server2008",
+      "Name": "CIS Microsoft Windows Server 2008 (non-R2) Benchmark",
+      "Version": "3.3.0",
+      "Variant": "Standard",
+      "Platform": {
+        "Product": "Windows Server 2008",
+        "ProductType": "Server",
+        "BuildMinimum": 6000,
+        "BuildMaximum": 6002
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_Server_2008_(non-R2)_Benchmark_v3.3.0_ARCHIVE.pdf",
+      "Archived": true,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 316,
+      "Sha256": "0a288c060cf67fd1253762fe96e66e6114e36f053dbd1bdd28e5b3bc71e393a9"
+    },
+    {
+      "FileName": "CIS_Server2012R2_3.0.0_ARCHIVE.json",
+      "Id": "CIS_Server2012R2",
+      "Name": "CIS Microsoft Windows Server 2012 R2 Benchmark",
+      "Version": "3.0.0",
+      "Variant": "Standard",
+      "Platform": {
+        "Product": "Windows Server 2012 R2",
+        "ProductType": "Server",
+        "BuildMinimum": 9600,
+        "BuildMaximum": 9600
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_Server_2012_R2_Benchmark_v3.0.0_ARCHIVE.pdf",
+      "Archived": true,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 361,
+      "Sha256": "ce00e88327e34c3dfda0ae449bdf4d3fc8580d3161f743a70487939d43a68de7"
+    },
+    {
+      "FileName": "CIS_Server2016_4.0.0.json",
+      "Id": "CIS_Server2016",
+      "Name": "CIS Microsoft Windows Server 2016 Benchmark",
+      "Version": "4.0.0",
+      "Variant": "Standard",
+      "Platform": {
+        "Product": "Windows Server 2016",
+        "ProductType": "Server",
+        "BuildMinimum": 14393,
+        "BuildMaximum": 14393
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_Server_2016_Benchmark_v4.0.0.pdf",
+      "Archived": false,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 420,
+      "Sha256": "0116a3df7fa37bf4f0adc72610ed91006c8143c21d47d536396dbc52f29b4d0d"
+    },
+    {
+      "FileName": "CIS_Server2016_STIG_3.0.0.json",
+      "Id": "CIS_Server2016_STIG",
+      "Name": "CIS Microsoft Windows Server 2016 STIG Benchmark",
+      "Version": "3.0.0",
+      "Variant": "STIG",
+      "Platform": {
+        "Product": "Windows Server 2016",
+        "ProductType": "Server",
+        "BuildMinimum": 14393,
+        "BuildMaximum": 14393
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_Server_2016_STIG_Benchmark_v3.0.0.pdf",
+      "Archived": false,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 443,
+      "Sha256": "cef883129b7ac39c54c4469ed90e988e6e1299a5b80e69b4e57154f656d14166"
+    },
+    {
+      "FileName": "CIS_Server2019_5.0.0.json",
+      "Id": "CIS_Server2019",
+      "Name": "CIS Microsoft Windows Server 2019 Benchmark",
+      "Version": "5.0.0",
+      "Variant": "Standard",
+      "Platform": {
+        "Product": "Windows Server 2019",
+        "ProductType": "Server",
+        "BuildMinimum": 17763,
+        "BuildMaximum": 17763
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_Server_2019_Benchmark_v5.0.0.pdf",
+      "Archived": false,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 398,
+      "Sha256": "170b6611c7bd4ef5a846845ee0f5942f33a4c963bc0e63fbce2e12a8764a9783"
+    },
+    {
+      "FileName": "CIS_Server2019_Standalone_3.0.0.json",
+      "Id": "CIS_Server2019_Standalone",
+      "Name": "CIS Microsoft Windows Server 2019 Stand-alone Benchmark",
+      "Version": "3.0.0",
+      "Variant": "Standalone",
+      "Platform": {
+        "Product": "Windows Server 2019",
+        "ProductType": "Server",
+        "BuildMinimum": 17763,
+        "BuildMaximum": 17763
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_Server_2019_Stand-alone_v3.0.0.pdf",
+      "Archived": false,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 363,
+      "Sha256": "bfa6a48f966a7dcaa29c48deb0c728b334c3683e1b3e974b160fa758e4667ece"
+    },
+    {
+      "FileName": "CIS_Server2019_STIG_3.0.0.json",
+      "Id": "CIS_Server2019_STIG",
+      "Name": "CIS Microsoft Windows Server 2019 STIG Benchmark",
+      "Version": "3.0.0",
+      "Variant": "STIG",
+      "Platform": {
+        "Product": "Windows Server 2019",
+        "ProductType": "Server",
+        "BuildMinimum": 17763,
+        "BuildMaximum": 17763
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_Server_2019_STIG_Benchmark_v3.0.0.pdf",
+      "Archived": false,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 450,
+      "Sha256": "31f3be8ba9a175df1671f351c13853ddf523e3f56fb471c5d4a1b2e795d6e28b"
+    },
+    {
+      "FileName": "CIS_Server2022_5.1.0.json",
+      "Id": "CIS_Server2022",
+      "Name": "CIS Microsoft Windows Server 2022 Benchmark",
+      "Version": "5.1.0",
+      "Variant": "Standard",
+      "Platform": {
+        "Product": "Windows Server 2022",
+        "ProductType": "Server",
+        "BuildMinimum": 20348,
+        "BuildMaximum": 20348
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_Server_2022_Benchmark_v5.1.0.pdf",
+      "Archived": false,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 406,
+      "Sha256": "a84b5394f5f1f9653ef9471f5c57a40dc9db95760506885b4c5624d759ea0809"
+    },
+    {
+      "FileName": "CIS_Server2022_Standalone_2.0.0.json",
+      "Id": "CIS_Server2022_Standalone",
+      "Name": "CIS Microsoft Windows Server 2022 Stand-alone Benchmark",
+      "Version": "2.0.0",
+      "Variant": "Standalone",
+      "Platform": {
+        "Product": "Windows Server 2022",
+        "ProductType": "Server",
+        "BuildMinimum": 20348,
+        "BuildMaximum": 20348
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_Server_2022_Stand-alone_Benchmark_v2.0.0.pdf",
+      "Archived": false,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 340,
+      "Sha256": "ebdb71cf63889790a397b15eec2bf5d129e35bb65e5ca8e46cf82ef027f055da"
+    },
+    {
+      "FileName": "CIS_Server2022_STIG_2.0.0.json",
+      "Id": "CIS_Server2022_STIG",
+      "Name": "CIS Microsoft Windows Server 2022 STIG Benchmark",
+      "Version": "2.0.0",
+      "Variant": "STIG",
+      "Platform": {
+        "Product": "Windows Server 2022",
+        "ProductType": "Server",
+        "BuildMinimum": 20348,
+        "BuildMaximum": 20348
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_Server_2022_STIG_Benchmark_v2.0.0.pdf",
+      "Archived": false,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 462,
+      "Sha256": "7bd08d7c08ffb380d08c2d317bf4c2a8437ce8aa85cb6dd5a81abc3a189f27e2"
+    },
+    {
+      "FileName": "CIS_Server2025_2.1.0.json",
+      "Id": "CIS_Server2025",
+      "Name": "CIS Microsoft Windows Server 2025 Benchmark",
+      "Version": "2.1.0",
+      "Variant": "Standard",
+      "Platform": {
+        "Product": "Windows Server 2025",
+        "ProductType": "Server",
+        "BuildMinimum": 26100,
+        "BuildMaximum": 29999
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_Server_2025_Benchmark_v2.1.0.pdf",
+      "Archived": false,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 426,
+      "Sha256": "6dda1cd36e1a4f87680fedfb836fcdf5f3f796368f890321263286c0072080fa"
+    },
+    {
+      "FileName": "CIS_WindowsXP_3.1.0_ARCHIVE.json",
+      "Id": "CIS_WindowsXP",
+      "Name": "CIS Microsoft Windows XP Benchmark",
+      "Version": "3.1.0",
+      "Variant": "General",
+      "Platform": {
+        "Product": "Windows XP",
+        "ProductType": "Workstation",
+        "BuildMinimum": 2600,
+        "BuildMaximum": 2600
+      },
+      "SourceDocument": "CIS_Microsoft_Windows_XP_Benchmark__imported__v3.1.0_ARCHIVE.pdf",
+      "Archived": true,
+      "Supplemental": false,
+      "AutomationSelection": "CISAutomatedRecommendations",
+      "AutomatedControlCount": 156,
+      "Sha256": "a928edfafbe6b7d013a87fe436efe993aed15f04495a269b54a9171669a4c465"
+    }
+  ]
+}

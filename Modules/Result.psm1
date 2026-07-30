@@ -52,6 +52,18 @@ function New-CISResult {
     .PARAMETER Reference
         Benchmark, policy, or documentation reference.
 
+    .PARAMETER BenchmarkName
+        Full name of the selected CIS benchmark.
+
+    .PARAMETER BenchmarkVersion
+        Version of the selected CIS benchmark.
+
+    .PARAMETER BenchmarkFile
+        Definition file used for the assessment.
+
+    .PARAMETER Profile
+        CIS profile applicability recorded by the benchmark definition.
+
     .PARAMETER Timestamp
         Time at which the finding was created. Defaults to the current local time.
 
@@ -99,7 +111,7 @@ function New-CISResult {
         [string]$Actual,
 
         [Parameter(Mandatory = $true)]
-        [ValidateSet('PASS', 'FAIL', 'WARNING', 'NOT APPLICABLE', 'NOT EXECUTED')]
+        [ValidateSet('PASS', 'FAIL', 'WARNING', 'NOT APPLICABLE')]
         [string]$Status,
 
         [Parameter(Mandatory = $true)]
@@ -117,6 +129,22 @@ function New-CISResult {
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string]$Reference,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string]$BenchmarkName = '',
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string]$BenchmarkVersion = '',
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string]$BenchmarkFile = '',
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string]$Profile = '',
 
         [Parameter()]
         [datetime]$Timestamp = (Get-Date),
@@ -142,6 +170,10 @@ function New-CISResult {
         Evidence     = $Evidence
         Remediation  = $Remediation
         Reference    = $Reference
+        BenchmarkName = $BenchmarkName
+        BenchmarkVersion = $BenchmarkVersion
+        BenchmarkFile = $BenchmarkFile
+        Profile       = $Profile
         Timestamp    = $Timestamp
         ComputerName = $ComputerName
         User         = $User

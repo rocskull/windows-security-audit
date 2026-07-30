@@ -7,3 +7,10 @@ function Invoke-Audit {
     foreach($category in $categories){$id++;if(-not(Test-Path -LiteralPath $auditpol -PathType Leaf)){New-AuditPolicyResult -ControlID ('AUD-{0:d3}' -f $id) -Title $category -Expected 'Audit category configuration is available.' -Actual 'Unavailable' -Status WARNING -Severity Medium -Evidence 'auditpol.exe is unavailable.' -Remediation 'Verify the Windows audit policy management tool is available.';continue};try{$lines=@(& $auditpol /get "/category:$category" /r 2>$null)}catch{$lines=@()};if($LASTEXITCODE -ne 0 -or $lines.Count -eq 0){New-AuditPolicyResult -ControlID ('AUD-{0:d3}' -f $id) -Title $category -Expected 'Audit subcategories are configured and reviewed.' -Actual 'Unavailable' -Status WARNING -Severity Medium -Evidence ("auditpol query failed with exit code {0}." -f $LASTEXITCODE) -Remediation ('Configure and review advanced audit policy for the {0} category.' -f $category);continue};$data=@($lines|Select-Object -Skip 1);New-AuditPolicyResult -ControlID ('AUD-{0:d3}' -f $id) -Title $category -Expected 'Audit subcategories are configured and reviewed.' -Actual ($data -join ' | ') -Status $(if($data.Count){'PASS'}else{'WARNING'}) -Severity Medium -Evidence ('auditpol returned {0} policy row(s) for {1}.' -f $data.Count,$category) -Remediation ('Review success and failure auditing requirements for every {0} subcategory.' -f $category)}
 }
 Export-ModuleMember -Function Invoke-Audit
+<#
+.SYNOPSIS
+    Provides legacy advanced audit policy review checks.
+.DESCRIPTION
+    Retained for compatibility with framework v1. The v2 benchmark engine uses
+    the data-driven AuditPolicy provider instead.
+#>

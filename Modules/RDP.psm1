@@ -2,3 +2,10 @@ Set-StrictMode -Version Latest
 Import-Module (Join-Path $PSScriptRoot 'SecurityAuditUtilities.psm1') -Force -ErrorAction Stop
 function Invoke-Audit {[CmdletBinding()][OutputType([pscustomobject])]param();$p='HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server';$items=@(@('RDP-001','RDP Enabled',$p,'fDenyTSConnections',0),@('RDP-002','NLA',"$p\WinStations\RDP-Tcp",'UserAuthentication',1),@('RDP-003','TLS Required',"$p\WinStations\RDP-Tcp",'SecurityLayer',2),@('RDP-004','Encryption Level',"$p\WinStations\RDP-Tcp",'MinEncryptionLevel',3),@('RDP-005','Clipboard Redirection',$p,'fDisableClip',1),@('RDP-006','Drive Redirection',$p,'fDisableCdm',1),@('RDP-007','Printer Redirection',$p,'fDisableCpm',1),@('RDP-008','Session Timeout',"$p\WinStations\RDP-Tcp",'MaxIdleTime',1),@('RDP-009','Remote Assistance','HKLM:\SYSTEM\CurrentControlSet\Control\Remote Assistance','fAllowToGetHelp',0));foreach($i in $items){$v=Get-CISRegistryValue $i[2] $i[3];New-CISAuditFinding $i[0] 'RDP' 'Remote Desktop' $i[1] 'Secure policy configured.' ([string]$v) $(if($null -eq $v){'WARNING'}elseif($i[0]-eq'RDP-001'){if($v -eq 1){'PASS'}else{'WARNING'}}elseif($v -ge $i[4]){'PASS'}else{'FAIL'}) Medium "$($i[3])=$v" 'Configure RDP securely or disable it when not required.'}}
 Export-ModuleMember -Function Invoke-Audit
+<#
+.SYNOPSIS
+    Provides legacy Remote Desktop security checks.
+.DESCRIPTION
+    Retained for compatibility with framework v1. The v2 CIS entry point reads
+    Remote Desktop requirements from the selected benchmark definition.
+#>

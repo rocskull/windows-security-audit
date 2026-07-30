@@ -17,3 +17,10 @@ function Invoke-Audit {
     $last=Get-DefenderValue $status 'AntivirusSignatureLastUpdated';$lastDate=$null;try{$lastDate=[datetime]$last}catch{};New-DefenderResult -ControlID 'DEF-010' -Title 'Last Signature Update' -Expected 'Updated within the last 7 days' -Actual $(if($lastDate){$lastDate.ToString('o')}else{'Unavailable'}) -Status $(if($null -eq $lastDate){'WARNING'}elseif($lastDate -ge (Get-Date).AddDays(-7)){'PASS'}else{'FAIL'}) -Severity High -Evidence ('AntivirusSignatureLastUpdated: {0}.' -f $last) -Remediation 'Update Microsoft Defender Antivirus security intelligence and verify scheduled updates.'
 }
 Export-ModuleMember -Function Invoke-Audit
+<#
+.SYNOPSIS
+    Provides legacy Microsoft Defender Antivirus review checks.
+.DESCRIPTION
+    Retained for compatibility with framework v1. The v2 CIS entry point uses
+    the selected benchmark definition for Defender policy requirements.
+#>

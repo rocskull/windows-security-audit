@@ -11,8 +11,9 @@
 Set-StrictMode -Version Latest
 
 $script:ResultProperties = @(
-    'ControlID', 'Category', 'SubCategory', 'Title', 'Expected', 'Actual',
-    'Status', 'Severity', 'Evidence', 'Remediation', 'Reference', 'Timestamp',
+    'ControlID', 'BenchmarkName', 'BenchmarkVersion', 'BenchmarkFile', 'Profile',
+    'Category', 'SubCategory', 'Title', 'Expected', 'Actual', 'Status',
+    'Severity', 'Evidence', 'Remediation', 'Reference', 'Timestamp',
     'ComputerName', 'User'
 )
 $script:DefaultReportsDirectory = Join-Path -Path (Split-Path -Path $PSScriptRoot -Parent) -ChildPath 'Reports'
@@ -60,7 +61,6 @@ function Get-AuditReportSummary {
         'FAIL'           = 0
         'WARNING'        = 0
         'NOT APPLICABLE' = 0
-        'NOT EXECUTED'   = 0
     }
 
     foreach ($result in $allResults) {
@@ -107,10 +107,33 @@ function Get-AuditReportSummary {
         Fail              = $statusCounts['FAIL']
         Warning           = $statusCounts['WARNING']
         NotApplicable     = $statusCounts['NOT APPLICABLE']
-        NotExecuted       = $statusCounts['NOT EXECUTED']
         CompliancePercent = $compliancePercent
         CriticalFindings  = $criticalFindings
         CategoryBreakdown = @($categoryBreakdown)
+    }
+}
+
+function Get-ReportBenchmarks {
+    <#
+    .SYNOPSIS
+        Returns the unique benchmark name, version, and definition tuples.
+    #>
+    [CmdletBinding()]
+    param ([Parameter()] [object[]]$Results)
+
+    $seen = @{}
+    foreach ($result in @($Results | Where-Object { $null -ne $_ })) {
+        $definition = Get-ReportValue -Result $result -Name 'BenchmarkFile'
+        $name = Get-ReportValue -Result $result -Name 'BenchmarkName'
+        $version = Get-ReportValue -Result $result -Name 'BenchmarkVersion'
+        $key = '{0}|{1}|{2}' -f $definition, $name, $version
+        if ($seen.ContainsKey($key)) { continue }
+        $seen[$key] = $true
+        [pscustomobject][ordered]@{
+            Name       = $name
+            Version    = $version
+            Definition = $definition
+        }
     }
 }
 
@@ -229,11 +252,15 @@ function Generate-HTMLReport {
     $remediationRows = ConvertTo-HtmlTableRows -Results @($allResults | Where-Object { (Get-ReportStatus $_) -in @('FAIL','WARNING') }) -Properties @('ControlID','Category','Title','Status','Severity','Remediation')
     if ([string]::IsNullOrWhiteSpace($remediationRows)) { $remediationRows = '<tr><td colspan="6" class="empty">No remediation actions are required.</td></tr>' }
     $first = @($allResults | Select-Object -First 1); $machine = if($first.Count){Get-ReportValue $first[0] 'ComputerName'}else{$env:COMPUTERNAME}; $user = if($first.Count){Get-ReportValue $first[0] 'User'}else{$env:USERNAME}
+    $benchmarks = @(Get-ReportBenchmarks -Results $allResults)
+    $benchmarkName = if($benchmarks.Count){@($benchmarks | ForEach-Object Name) -join '; '}else{'Unavailable'}
+    $benchmarkVersion = if($benchmarks.Count){@($benchmarks | ForEach-Object Version) -join '; '}else{'Unavailable'}
+    $benchmarkFile = if($benchmarks.Count){@($benchmarks | ForEach-Object Definition) -join '; '}else{'Unavailable'}
     try { $identity=[Security.Principal.WindowsIdentity]::GetCurrent(); $executionMode=if((New-Object Security.Principal.WindowsPrincipal($identity)).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)){'Administrator'}else{'Standard User'} } catch { $executionMode='Standard User' }
     try { $computerSystem=Get-CimInstance Win32_ComputerSystem -ErrorAction Stop; $domain=if($computerSystem.PartOfDomain){$computerSystem.Domain}else{'Workgroup'} } catch { $domain='Unavailable' }
-    try { $os=Get-CimInstance Win32_OperatingSystem -ErrorAction Stop; $windows='{0} ({1}) Build {2}' -f $os.Caption,$os.Version,$os.BuildNumber } catch { $windows='Unavailable' }
+    try { $os=Get-CimInstance Win32_OperatingSystem -ErrorAction Stop; $windows='{0} ({1}) Build {2}' -f $os.Caption,$os.Version,$os.BuildNumber } catch { try { $cv=Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -ErrorAction Stop; $productName=[string]$cv.ProductName;if([int]$cv.CurrentBuildNumber -ge 22000){$productName=$productName -replace 'Windows 10','Windows 11'};$windows='{0} (10.0.{1}) Build {1}' -f $productName,$cv.CurrentBuildNumber } catch { $windows='Unavailable' } }
     try { $av=@(Get-CimInstance -Namespace root\SecurityCenter2 -Class AntiVirusProduct -ErrorAction Stop|ForEach-Object displayName)-join '; ';if(!$av){$av='None detected'} } catch { $av='Unavailable' }
-    $machineRows='<tr><th>Execution Mode</th><td>{0}</td></tr><tr><th>Computer Name / Hostname</th><td>{1}</td></tr><tr><th>Domain</th><td>{2}</td></tr><tr><th>Audit User</th><td>{3}</td></tr><tr><th>Windows Version</th><td>{4}</td></tr><tr><th>PowerShell Version</th><td>{5}</td></tr><tr><th>Execution Policy</th><td>{6}</td></tr><tr><th>Installed Antivirus</th><td>{7}</td></tr><tr><th>Export Time</th><td>{8}</td></tr>' -f (ConvertTo-HtmlEncoded $executionMode),(ConvertTo-HtmlEncoded $machine),(ConvertTo-HtmlEncoded $domain),(ConvertTo-HtmlEncoded $user),(ConvertTo-HtmlEncoded $windows),(ConvertTo-HtmlEncoded $PSVersionTable.PSVersion),(ConvertTo-HtmlEncoded (Get-ExecutionPolicy)),(ConvertTo-HtmlEncoded $av),(ConvertTo-HtmlEncoded $summary.GeneratedAt.ToString('yyyy-MM-dd HH:mm:ss K'))
+    $machineRows='<tr><th>CIS Benchmark</th><td>{0}</td></tr><tr><th>Benchmark Version</th><td>{1}</td></tr><tr><th>Benchmark Definition</th><td>{2}</td></tr><tr><th>Execution Mode</th><td>{3}</td></tr><tr><th>Computer Name / Hostname</th><td>{4}</td></tr><tr><th>Domain</th><td>{5}</td></tr><tr><th>Audit User</th><td>{6}</td></tr><tr><th>Windows Version</th><td>{7}</td></tr><tr><th>PowerShell Version</th><td>{8}</td></tr><tr><th>Execution Policy</th><td>{9}</td></tr><tr><th>Installed Antivirus</th><td>{10}</td></tr><tr><th>Export Time</th><td>{11}</td></tr>' -f (ConvertTo-HtmlEncoded $benchmarkName),(ConvertTo-HtmlEncoded $benchmarkVersion),(ConvertTo-HtmlEncoded $benchmarkFile),(ConvertTo-HtmlEncoded $executionMode),(ConvertTo-HtmlEncoded $machine),(ConvertTo-HtmlEncoded $domain),(ConvertTo-HtmlEncoded $user),(ConvertTo-HtmlEncoded $windows),(ConvertTo-HtmlEncoded $PSVersionTable.PSVersion),(ConvertTo-HtmlEncoded (Get-ExecutionPolicy)),(ConvertTo-HtmlEncoded $av),(ConvertTo-HtmlEncoded $summary.GeneratedAt.ToString('yyyy-MM-dd HH:mm:ss K'))
     function Get-Posture { param([string]$Pattern) $x=@($allResults|Where-Object{(Get-ReportValue $_ 'Category') -match $Pattern});if(!$x.Count){return 'No related findings.'};'{0} PASS, {1} FAIL, {2} total' -f @($x|Where-Object{(Get-ReportStatus $_)-eq'PASS'}).Count,@($x|Where-Object{(Get-ReportStatus $_)-eq'FAIL'}).Count,$x.Count }
     $bitlocker=Get-Posture 'BitLocker';$defender=Get-Posture 'Defender|ASR|SmartScreen';$firewall=Get-Posture 'Firewall';$admins=@($allResults|Where-Object{(Get-ReportValue $_ 'Title') -eq 'Members of Local Administrators'}|ForEach-Object{Get-ReportValue $_ 'Actual'})-join '; ';if(!$admins){$admins='No finding returned.'}
 
@@ -248,7 +275,7 @@ function Generate-HTMLReport {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Windows Security Configuration Review</title>
+<title>Windows CIS Configuration Assessment</title>
 <style>
 :root { --ink:#132238; --muted:#637083; --surface:#ffffff; --canvas:#f3f6fa; --line:#dfe6ef; --blue:#2364aa; --green:#12715b; --red:#bd3e3e; --amber:#a76500; --slate:#5d6775; }
 * { box-sizing:border-box; } body { margin:0; background:var(--canvas); color:var(--ink); font-family:Segoe UI,Arial,sans-serif; font-size:14px; line-height:1.45; }
@@ -262,8 +289,8 @@ function Generate-HTMLReport {
 </style>
 </head>
 <body>
-<header class="hero"><h1>Windows Security Configuration Review</h1><p>Generated $((ConvertTo-HtmlEncoded $summary.GeneratedAt.ToString('yyyy-MM-dd HH:mm:ss K'))) · $($summary.Total) total findings</p></header>
-<main class="container"><div class="section"><div class="section-body"><strong>COMPANY LOGO PLACEHOLDER</strong> · Report Header · Exported $(ConvertTo-HtmlEncoded $summary.GeneratedAt.ToString('yyyy-MM-dd HH:mm:ss K'))</div></div>
+<header class="hero"><h1>Windows CIS Configuration Assessment</h1><p>$(ConvertTo-HtmlEncoded $benchmarkName) | version(s) $(ConvertTo-HtmlEncoded $benchmarkVersion) | $($summary.Total) automated controls</p></header>
+<main class="container">
 <section class="section"><h2>Executive Summary</h2><div class="section-body"><div class="cards">
 <div class="card compliance"><div class="label">Compliance</div><div class="value">$($summary.CompliancePercent.ToString('N2'))%</div></div>
 <div class="card pass"><div class="label">Pass</div><div class="value">$($summary.Pass)</div></div>
@@ -273,14 +300,14 @@ function Generate-HTMLReport {
 <div class="card"><div class="label">Critical Failures</div><div class="value">$($summary.CriticalFindings.Count)</div></div>
 </div></div></section>
 <section class="section"><h2>Machine Information and Security Posture</h2><div class="section-body"><div class="table-wrap"><table><tbody>$machineRows</tbody></table></div><p><strong>BitLocker Summary:</strong> $(ConvertTo-HtmlEncoded $bitlocker)</p><p><strong>Defender Summary:</strong> $(ConvertTo-HtmlEncoded $defender)</p><p><strong>Firewall Summary:</strong> $(ConvertTo-HtmlEncoded $firewall)</p><p><strong>Local Administrators:</strong> $(ConvertTo-HtmlEncoded $admins)</p></div></section>
-<section class="section"><h2>Severity Distribution</h2><div class="section-body"><svg width="220" height="120" viewBox="0 0 220 120" role="img" aria-label="Severity pie chart"><circle cx="60" cy="60" r="45" fill="#bd3e3e"/><path d="M60,60 L60,15 A45,45 0 0,1 102,45 Z" fill="#8f1d2c"/><path d="M60,60 L102,45 A45,45 0 0,1 84,98 Z" fill="#d68100"/><circle cx="60" cy="60" r="21" fill="#fff"/></svg><p>Critical: $(@($allResults|Where-Object{(Get-ReportValue $_ 'Severity') -eq 'Critical'}).Count) · High: $(@($allResults|Where-Object{(Get-ReportValue $_ 'Severity') -eq 'High'}).Count) · Medium: $(@($allResults|Where-Object{(Get-ReportValue $_ 'Severity') -eq 'Medium'}).Count) · Low: $(@($allResults|Where-Object{(Get-ReportValue $_ 'Severity') -eq 'Low'}).Count) · Informational: $(@($allResults|Where-Object{(Get-ReportValue $_ 'Severity') -eq 'Informational'}).Count)</p></div></section>
+<section class="section"><h2>Severity Distribution</h2><div class="section-body"><div class="cards"><div class="card"><div class="label">Critical</div><div class="value">$(@($allResults|Where-Object{(Get-ReportValue $_ 'Severity') -eq 'Critical'}).Count)</div></div><div class="card"><div class="label">High</div><div class="value">$(@($allResults|Where-Object{(Get-ReportValue $_ 'Severity') -eq 'High'}).Count)</div></div><div class="card"><div class="label">Medium</div><div class="value">$(@($allResults|Where-Object{(Get-ReportValue $_ 'Severity') -eq 'Medium'}).Count)</div></div><div class="card"><div class="label">Low</div><div class="value">$(@($allResults|Where-Object{(Get-ReportValue $_ 'Severity') -eq 'Low'}).Count)</div></div><div class="card"><div class="label">Informational</div><div class="value">$(@($allResults|Where-Object{(Get-ReportValue $_ 'Severity') -eq 'Informational'}).Count)</div></div></div></div></section>
 <section class="section"><h2>Critical Findings</h2><div class="table-wrap"><table><thead><tr><th>Control ID</th><th>Category</th><th>Title</th><th>Actual</th><th>Remediation</th></tr></thead><tbody>$criticalRows</tbody></table></div></section>
 <section class="section"><h2>Failed Controls</h2><div class="table-wrap"><table><thead><tr><th>Control ID</th><th>Category</th><th>Title</th><th>Severity</th><th>Actual</th></tr></thead><tbody>$failedRows</tbody></table></div></section>
 <section class="section"><h2>Category Breakdown</h2><div class="table-wrap"><table><thead><tr><th>Category</th><th>Total</th><th>Pass</th><th>Fail</th><th>Warning</th><th>Not Applicable</th><th>Compliance</th></tr></thead><tbody>$($categoryRows -join [Environment]::NewLine)</tbody></table></div></section>
 <section class="section"><h2>All Findings</h2><div class="table-wrap"><table><thead><tr><th>Control ID</th><th>Category</th><th>Subcategory</th><th>Title</th><th>Status</th><th>Severity</th><th>Expected</th><th>Actual</th><th>Evidence</th><th>Remediation</th><th>Reference</th></tr></thead><tbody>$findingRows</tbody></table></div></section>
 <section class="section"><h2>Remediation Table</h2><div class="table-wrap"><table><thead><tr><th>Control ID</th><th>Category</th><th>Title</th><th>Status</th><th>Severity</th><th>Remediation</th></tr></thead><tbody>$remediationRows</tbody></table></div></section>
 </main>
-<footer class="container footer">Compliance is calculated as PASS ÷ (PASS + FAIL). WARNING and NOT APPLICABLE findings are displayed separately.</footer>
+<footer class="container footer">Compliance is calculated as PASS / (PASS + FAIL). WARNING and NOT APPLICABLE findings are displayed separately.</footer>
 </body></html>
 "@
     Set-Content -LiteralPath $reportPath -Value $html -Encoding UTF8
@@ -324,8 +351,12 @@ function Generate-JSONReport {
 
     $reportPath = Resolve-ReportOutputPath -OutputDirectory $OutputDirectory -Extension 'json' -Path $Path
     $summary = Get-AuditReportSummary -Results $Results
+    $benchmarks = @(Get-ReportBenchmarks -Results $Results)
+    $benchmark = if ($benchmarks.Count -gt 0) { $benchmarks[0] } else { $null }
     $report = [ordered]@{
         GeneratedAt = $summary.GeneratedAt
+        Benchmark   = $benchmark
+        Benchmarks  = $benchmarks
         Summary     = [ordered]@{
             Total             = $summary.Total
             Pass              = $summary.Pass
@@ -387,10 +418,29 @@ function ConvertTo-ExcelCellXml {
 
 function New-ExcelWorksheetXml {
     [CmdletBinding()]
-    param ([Parameter(Mandatory = $true)] [object[]]$Rows)
+    param (
+        [Parameter(Mandatory = $true)] [object[]]$Rows,
+        [Parameter()] [int]$FreezeRows = 1,
+        [Parameter()] [int]$AutoFilterRow = 0
+    )
 
     $builder = New-Object System.Text.StringBuilder
-    [void]$builder.Append('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>')
+    $maximumColumns = 1
+    foreach ($rowValue in $Rows) {
+        $maximumColumns = [Math]::Max($maximumColumns, @($rowValue).Count)
+    }
+    $lastColumn = ConvertTo-ExcelColumnName -Number $maximumColumns
+    $lastRow = [Math]::Max(1, $Rows.Count)
+    $widths = @(14, 42, 14, 30, 28, 30, 30, 60, 34, 34, 18, 14, 65, 75, 42, 24, 18, 22)
+    [void]$builder.Append('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">')
+    [void]$builder.AppendFormat('<dimension ref="A1:{0}{1}"/>', $lastColumn, $lastRow)
+    [void]$builder.AppendFormat('<sheetViews><sheetView workbookViewId="0"><pane ySplit="{0}" topLeftCell="A{1}" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews>', $FreezeRows, ($FreezeRows + 1))
+    [void]$builder.Append('<cols>')
+    for ($columnIndex = 1; $columnIndex -le $maximumColumns; $columnIndex++) {
+        $width = if ($columnIndex -le $widths.Count) { $widths[$columnIndex - 1] } else { 22 }
+        [void]$builder.AppendFormat('<col min="{0}" max="{0}" width="{1}" customWidth="1"/>', $columnIndex, $width)
+    }
+    [void]$builder.Append('</cols><sheetData>')
     for ($rowIndex = 0; $rowIndex -lt $Rows.Count; $rowIndex++) {
         $rowNumber = $rowIndex + 1
         [void]$builder.AppendFormat('<row r="{0}">', $rowNumber)
@@ -403,7 +453,11 @@ function New-ExcelWorksheetXml {
         }
         [void]$builder.Append('</row>')
     }
-    [void]$builder.Append('</sheetData></worksheet>')
+    [void]$builder.Append('</sheetData>')
+    if ($AutoFilterRow -gt 0 -and $lastRow -ge $AutoFilterRow) {
+        [void]$builder.AppendFormat('<autoFilter ref="A{0}:{1}{2}"/>', $AutoFilterRow, $lastColumn, $lastRow)
+    }
+    [void]$builder.Append('</worksheet>')
     return $builder.ToString()
 }
 
@@ -447,8 +501,19 @@ function Generate-ExcelReport {
     $findings = @(Get-ReportRows -Results $Results)
 
     $summaryRows = @()
-    $summaryRows += ,@((New-ExcelCell -Value 'Windows Security Configuration Review' -Style 1))
+    $summaryRows += ,@((New-ExcelCell -Value 'Windows CIS Configuration Assessment' -Style 1))
     $summaryRows += ,@((New-ExcelCell -Value ('Generated: {0}' -f $summary.GeneratedAt.ToString('yyyy-MM-dd HH:mm:ss K'))))
+    if ($findings.Count -gt 0) {
+        $summaryRows += ,@((New-ExcelCell -Value 'Selected Benchmarks' -Style 1))
+        $summaryRows += ,@('CIS Benchmark', 'Version', 'Definition' | ForEach-Object { New-ExcelCell -Value $_ -Style 2 })
+        foreach ($benchmark in @(Get-ReportBenchmarks -Results $findings)) {
+            $summaryRows += ,@(
+                (New-ExcelCell -Value $benchmark.Name),
+                (New-ExcelCell -Value $benchmark.Version),
+                (New-ExcelCell -Value $benchmark.Definition)
+            )
+        }
+    }
     $summaryRows += ,@()
     $summaryRows += ,@((New-ExcelCell -Value 'Summary Dashboard' -Style 1))
     $summaryRows += ,@((New-ExcelCell -Value 'Metric' -Style 2), (New-ExcelCell -Value 'Value' -Style 2))
@@ -492,8 +557,8 @@ function Generate-ExcelReport {
         Add-OpenXmlZipEntry -Archive $archive -Name 'xl/workbook.xml' -Content '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Summary" sheetId="1" r:id="rId1"/><sheet name="Findings" sheetId="2" r:id="rId2"/></sheets></workbook>'
         Add-OpenXmlZipEntry -Archive $archive -Name 'xl/_rels/workbook.xml.rels' -Content '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet2.xml"/><Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'
         Add-OpenXmlZipEntry -Archive $archive -Name 'xl/styles.xml' -Content '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="3"><font><sz val="11"/><name val="Calibri"/></font><font><b/><color rgb="FFFFFFFF"/><sz val="11"/><name val="Calibri"/></font><font><b/><color rgb="FFFFFFFF"/><sz val="16"/><name val="Calibri"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF2364AA"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="4"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="2" fillId="2" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0"/><xf numFmtId="10" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/></cellXfs></styleSheet>'
-        Add-OpenXmlZipEntry -Archive $archive -Name 'xl/worksheets/sheet1.xml' -Content (New-ExcelWorksheetXml -Rows $summaryRows)
-        Add-OpenXmlZipEntry -Archive $archive -Name 'xl/worksheets/sheet2.xml' -Content (New-ExcelWorksheetXml -Rows $findingsRows)
+        Add-OpenXmlZipEntry -Archive $archive -Name 'xl/worksheets/sheet1.xml' -Content (New-ExcelWorksheetXml -Rows $summaryRows -FreezeRows 1)
+        Add-OpenXmlZipEntry -Archive $archive -Name 'xl/worksheets/sheet2.xml' -Content (New-ExcelWorksheetXml -Rows $findingsRows -FreezeRows 3 -AutoFilterRow 3)
     }
     finally {
         $archive.Dispose()

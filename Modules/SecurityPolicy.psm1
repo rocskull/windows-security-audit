@@ -17,3 +17,10 @@ function Invoke-Audit {
     $cached=Get-PolicyRegistryValue 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' 'CachedLogonsCount';$cachedNumber=0;$isNumber=[int]::TryParse([string]$cached,[ref]$cachedNumber);New-SecurityPolicyResult -ControlID 'SEC-009' -Title 'Cached Logons' -Expected '4 or fewer cached interactive logons' -Actual ([string]$cached) -Status $(if(-not $isNumber){'WARNING'}elseif($cachedNumber -le 4){'PASS'}else{'FAIL'}) -Severity Medium -Evidence ('CachedLogonsCount: {0}.' -f $cached) -Remediation 'Set Interactive logon: Number of previous logons to cache to 4 or fewer.'
 }
 Export-ModuleMember -Function Invoke-Audit
+<#
+.SYNOPSIS
+    Provides legacy local security-policy checks.
+.DESCRIPTION
+    Retained for compatibility with framework v1. The v2 benchmark engine uses
+    its generic SecurityPolicy and UserRight providers.
+#>

@@ -1,0 +1,33 @@
+{
+  "CIS_Windows10_Enterprise_1703_1.3.0.json": [
+    {
+      "Id": "2.2.14",
+      "Title": "Configure 'Create symbolic links'",
+      "Reason": "No supported machine-readable check could be derived."
+    }
+  ],
+  "CIS_Windows7_Workstation_3.2.0_ARCHIVE.json": [
+    {
+      "Id": "2.2.14",
+      "Title": "Configure 'Create symbolic links'",
+      "Reason": "No supported machine-readable check could be derived."
+    },
+    {
+      "Id": "2.2.29",
+      "Title": "Configure 'Log on as a service'",
+      "Reason": "No supported machine-readable check could be derived."
+    }
+  ],
+  "CIS_Windows8.1_Workstation_2.4.0_ARCHIVE.json": [
+    {
+      "Id": "2.2.14",
+      "Title": "Configure 'Create symbolic links'",
+      "Reason": "No supported machine-readable check could be derived."
+    },
+    {
+      "Id": "2.2.29",
+      "Title": "Configure 'Log on as a service'",
+      "Reason": "No supported machine-readable check could be derived."
+    }
+  ]
+}

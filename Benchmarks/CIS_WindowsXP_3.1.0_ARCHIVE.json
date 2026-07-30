@@ -1,0 +1,3034 @@
+{
+  "SchemaVersion": "2.1",
+  "Benchmark": {
+    "Id": "CIS_WindowsXP",
+    "Name": "CIS Microsoft Windows XP Benchmark",
+    "Version": "3.1.0",
+    "Variant": "General",
+    "Platform": {
+      "Product": "Windows XP",
+      "ProductType": "Workstation",
+      "BuildMinimum": 2600,
+      "BuildMaximum": 2600
+    },
+    "SourceDocument": "CIS_Microsoft_Windows_XP_Benchmark__imported__v3.1.0_ARCHIVE.pdf",
+    "Archived": true,
+    "Supplemental": false,
+    "AutomationSelection": "CISAutomatedRecommendations",
+    "AutomatedControlCount": 156
+  },
+  "Controls": [
+    {
+      "Id": "1.1.1.1.1.2",
+      "Title": "Set 'Allow log on locally' to 'Administrators, Users'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators, Users",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeInteractiveLogonRight",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators",
+          "Users"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators, Users. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Allow log on locally",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.2"
+    },
+    {
+      "Id": "1.1.1.1.1.3",
+      "Title": "Set 'Debug programs' to 'Administrators'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeDebugPrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Debug programs",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.3"
+    },
+    {
+      "Id": "1.1.1.1.1.5",
+      "Title": "Set 'Perform volume maintenance tasks' to 'Administrators'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeManageVolumePrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Perform volume maintenance tasks",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.5"
+    },
+    {
+      "Id": "1.1.1.1.1.6",
+      "Title": "Set 'Bypass traverse checking' to 'Administrators, Users, Local Service, Network Service'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators, Users, Local Service, Network Service",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeChangeNotifyPrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators",
+          "Users",
+          "Local Service",
+          "Network Service"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators, Users, Local Service, Network Service. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Bypass traverse checking",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.6"
+    },
+    {
+      "Id": "1.1.1.1.1.9",
+      "Title": "Set 'Modify firmware environment values' to 'Administrators'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeSystemEnvironmentPrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Modify firmware environment values",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.9"
+    },
+    {
+      "Id": "1.1.1.1.1.10",
+      "Title": "Set 'Enable computer and user accounts to be trusted for delegation' to 'No One'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "No One",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeEnableDelegationPrivilege",
+        "Operator": "ExactSet",
+        "Expected": []
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to No One. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Enable computer and user accounts to be trusted for delegation",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.10"
+    },
+    {
+      "Id": "1.1.1.1.1.11",
+      "Title": "Set 'Deny log on as a batch job' to 'Guests, Support_388945a0'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Guests, Support_388945a0",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeDenyBatchLogonRight",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Guests",
+          "Support_388945a0"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Guests, Support\\_388945a0. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Deny log on as a batch job",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.11"
+    },
+    {
+      "Id": "1.1.1.1.1.13",
+      "Title": "Set 'Adjust memory quotas for a process' to 'Administrators, Local Service, Network Service'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators, Local Service, Network Service",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeIncreaseQuotaPrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators",
+          "Local Service",
+          "Network Service"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators, Local Service, Network Service. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Adjust memory quotas for a process",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.13"
+    },
+    {
+      "Id": "1.1.1.1.1.15",
+      "Title": "Set 'Shut down the system' to 'Administrators, Users'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators, Users",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeShutdownPrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators",
+          "Users"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators, Users. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Shut down the system",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.15"
+    },
+    {
+      "Id": "1.1.1.1.1.18",
+      "Title": "Set 'Take ownership of files or other objects' to 'Administrators'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeTakeOwnershipPrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Take ownership of files or other objects",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.18"
+    },
+    {
+      "Id": "1.1.1.1.1.19",
+      "Title": "Set 'Profile system performance' to 'Administrators'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeSystemProfilePrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Profile system performance",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.19"
+    },
+    {
+      "Id": "1.1.1.1.1.21",
+      "Title": "Set 'Increase scheduling priority' to 'Administrators'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeIncreaseBasePriorityPrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Increase scheduling priority",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.21"
+    },
+    {
+      "Id": "1.1.1.1.1.22",
+      "Title": "Set 'Manage auditing and security log' to 'Administrators'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeSecurityPrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Manage auditing and security log",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.22"
+    },
+    {
+      "Id": "1.1.1.1.1.23",
+      "Title": "Set 'Deny log on locally' to 'Guests, Support_388945a0'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Guests, Support_388945a0",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeDenyInteractiveLogonRight",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Guests",
+          "Support_388945a0"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Guests, Support\\_388945a0. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Deny log on locally",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.23"
+    },
+    {
+      "Id": "1.1.1.1.1.24",
+      "Title": "Set 'Create a pagefile' to 'Administrators'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeCreatePagefilePrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Create a pagefile",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.24"
+    },
+    {
+      "Id": "1.1.1.1.1.25",
+      "Title": "Set 'Access this computer from the network' to 'Users, Administrators'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Users, Administrators",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeNetworkLogonRight",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Users",
+          "Administrators"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Users, Administrators. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Access this computer from the network",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.25"
+    },
+    {
+      "Id": "1.1.1.1.1.26",
+      "Title": "Set 'Lock pages in memory' to 'No One'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "No One",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeLockMemoryPrivilege",
+        "Operator": "ExactSet",
+        "Expected": []
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to No One. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Lock pages in memory",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.26"
+    },
+    {
+      "Id": "1.1.1.1.1.27",
+      "Title": "Set 'Deny access to this computer from the network' to 'Support_388945a0, Guests'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Support_388945a0, Guests",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeDenyNetworkLogonRight",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Support_388945a0",
+          "Guests"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Support\\_388945a0, Guests. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Deny access to this computer from the network",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.27"
+    },
+    {
+      "Id": "1.1.1.1.1.28",
+      "Title": "Set 'Generate security audits' to 'Local Service, Network Service'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Local Service, Network Service",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeAuditPrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Local Service",
+          "Network Service"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Local Service, Network Service. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Generate security audits",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.28"
+    },
+    {
+      "Id": "1.1.1.1.1.30",
+      "Title": "Set 'Impersonate a client after authentication' to 'Administrators, SERVICE, Local Service, Network Service'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators, SERVICE, Local Service, Network Service",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeImpersonatePrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators",
+          "SERVICE",
+          "Local Service",
+          "Network Service"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators, SERVICE, Local Service, Network Service. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Impersonate a client after authentication",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.30"
+    },
+    {
+      "Id": "1.1.1.1.1.31",
+      "Title": "Set 'Replace a process level token' to 'Local Service, Network Service'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Local Service, Network Service",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeAssignPrimaryTokenPrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Local Service",
+          "Network Service"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Local Service, Network Service. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Replace a process level token",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.31"
+    },
+    {
+      "Id": "1.1.1.1.1.32",
+      "Title": "Set 'Load and unload device drivers' to 'Administrators'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeLoadDriverPrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Load and unload device drivers",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.32"
+    },
+    {
+      "Id": "1.1.1.1.1.33",
+      "Title": "Set 'Act as part of the operating system' to 'No One'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "No One",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeTcbPrivilege",
+        "Operator": "ExactSet",
+        "Expected": []
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to No One. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Act as part of the operating system",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.33"
+    },
+    {
+      "Id": "1.1.1.1.1.36",
+      "Title": "Set 'Force shutdown from a remote system' to 'Administrators'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeRemoteShutdownPrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Force shutdown from a remote system",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.36"
+    },
+    {
+      "Id": "1.1.1.1.1.37",
+      "Title": "Set 'Change the system time' to 'Administrators'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators",
+      "Check": {
+        "Type": "UserRight",
+        "Key": "SeSystemtimePrivilege",
+        "Operator": "ExactSet",
+        "Expected": [
+          "Administrators"
+        ]
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Administrators. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment\\Change the system time",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.1.37"
+    },
+    {
+      "Id": "1.1.1.1.2.2",
+      "Title": "Set 'Network security: Minimum session security for NTLM SSP based (including secure RPC) servers' to 'Require message integrity,Require message confidentiality,Require NTLMv2 session security,Require 128-bit encryption'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Require message integrity,Require message confidentiality,Require NTLMv2 session security,Require 128-bit encryption",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\Lsa\\MSV1_0",
+        "ValueName": "NTLMMinServerSec",
+        "Operator": "Equals",
+        "Expected": 128
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 537395248. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Network security: Minimum session security for NTLM SSP based (including secure RPC) servers",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.2"
+    },
+    {
+      "Id": "1.1.1.1.2.6",
+      "Title": "Set 'Domain member: Digitally encrypt or sign secure channel data (always)' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Services\\Netlogon\\Parameters",
+        "ValueName": "requiresignorseal",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Domain member: Digitally encrypt or sign secure channel data (always)",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.6"
+    },
+    {
+      "Id": "1.1.1.1.2.7",
+      "Title": "Set 'Domain member: Require strong (Windows 2000 or later) session key' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Services\\Netlogon\\Parameters",
+        "ValueName": "requirestrongkey",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Domain member: Require strong (Windows 2000 or later) session key",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.7"
+    },
+    {
+      "Id": "1.1.1.1.2.8",
+      "Title": "Set 'Domain member: Digitally encrypt secure channel data (when possible)' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Services\\Netlogon\\Parameters",
+        "ValueName": "sealsecurechannel",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Domain member: Digitally encrypt secure channel data (when possible)",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.8"
+    },
+    {
+      "Id": "1.1.1.1.2.9",
+      "Title": "Set 'Interactive logon: Require Domain Controller authentication to unlock workstation' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Microsoft\\WindowsNT\\CurrentVersion\\Winlogon",
+        "ValueName": "ForceUnlockLogon",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Interactive logon: Require Domain Controller authentication to unlock workstation",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.9"
+    },
+    {
+      "Id": "1.1.1.1.2.11",
+      "Title": "Set 'Accounts: Administrator account status' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "System Access",
+        "Key": "EnableAdminAccount",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 0. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Accounts: Administrator account status",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.11"
+    },
+    {
+      "Id": "1.1.1.1.2.12",
+      "Title": "Set 'Microsoft network client: Digitally sign communications (always)' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Services\\LanmanWorkstation\\Parameters",
+        "ValueName": "RequireSecuritySignature",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Microsoft network client: Digitally sign communications (always)",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.12"
+    },
+    {
+      "Id": "1.1.1.1.2.13",
+      "Title": "Set 'Network access: Let Everyone permissions apply to anonymous users' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\Lsa",
+        "ValueName": "EveryoneIncludesAnonymous",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 0. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Network access: Let Everyone permissions apply to anonymous users",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.13"
+    },
+    {
+      "Id": "1.1.1.1.2.14",
+      "Title": "Set 'Interactive logon: Do not require CTRL+ALT+DEL' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+        "ValueName": "DisableCAD",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 0. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Interactive logon: Do not require CTRL+ALT+DEL",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.14"
+    },
+    {
+      "Id": "1.1.1.1.2.15",
+      "Title": "Set 'MSS: (SafeDllSearchMode) Enable Safe DLL search mode (recommended)' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\SessionManager",
+        "ValueName": "SafeDllSearchMode",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\MSS: (SafeDllSearchMode) Enable Safe DLL search mode (recommended)",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.15"
+    },
+    {
+      "Id": "1.1.1.1.2.16",
+      "Title": "Set 'Network access: Do not allow anonymous enumeration of SAM accounts' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\Lsa",
+        "ValueName": "RestrictAnonymousSAM",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Network access: Do not allow anonymous enumeration of SAM accounts",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.16"
+    },
+    {
+      "Id": "1.1.1.1.2.17",
+      "Title": "Set 'Domain member: Digitally sign secure channel data (when possible)' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Services\\Netlogon\\Parameters",
+        "ValueName": "signsecurechannel",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Domain member: Digitally sign secure channel data (when possible)",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.17"
+    },
+    {
+      "Id": "1.1.1.1.2.18",
+      "Title": "Set 'Domain member: Maximum machine account password age' to '30'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "30",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Services\\Netlogon\\Parameters",
+        "ValueName": "MaximumPasswordAge",
+        "Operator": "Between",
+        "Expected": [
+          1,
+          30
+        ],
+        "ValueType": "DWORD"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 30. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Domain member: Maximum machine account password age",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.18"
+    },
+    {
+      "Id": "1.1.1.1.2.20",
+      "Title": "Set 'Microsoft network client: Send unencrypted password to third-party SMB servers' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Services\\LanmanWorkstation\\Parameters",
+        "ValueName": "EnablePlainTextPassword",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 0. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Microsoft network client: Send unencrypted password to third-party SMB servers",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.20"
+    },
+    {
+      "Id": "1.1.1.1.2.21",
+      "Title": "Set 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' to '2'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "2",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Microsoft\\WindowsNT\\CurrentVersion\\Winlogon",
+        "ValueName": "cachedlogonscount",
+        "Operator": "Equals",
+        "Expected": 2
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 2. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Interactive logon: Number of previous logons to cache (in case domain controller is not available)",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.21"
+    },
+    {
+      "Id": "1.1.1.1.2.22",
+      "Title": "Set 'Domain member: Disable machine account password changes' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Services\\Netlogon\\Parameters",
+        "ValueName": "disablepasswordchange",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 0. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Domain member: Disable machine account password changes",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.22"
+    },
+    {
+      "Id": "1.1.1.1.2.23",
+      "Title": "Set 'Network access: Sharing and security model for local accounts' to 'Classic - local users authenticate as themselves'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Classic - local users authenticate as themselves",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\Lsa",
+        "ValueName": "ForceGuest",
+        "Operator": "Equals",
+        "Expected": "Classic - local users authenticate as themselves"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 0. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Network access: Sharing and security model for local accounts",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.23"
+    },
+    {
+      "Id": "1.1.1.1.2.24",
+      "Title": "Set 'Network access: Allow anonymous SID/Name translation' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "System Access",
+        "Key": "LSAAnonymousNameLookup",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to False. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Network access: Allow anonymous SID/Name translation",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.24"
+    },
+    {
+      "Id": "1.1.1.1.2.26",
+      "Title": "Set 'Network access: Do not allow anonymous enumeration of SAM accounts and shares' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\Lsa",
+        "ValueName": "RestrictAnonymous",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Network access: Do not allow anonymous enumeration of SAM accounts and shares",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.26"
+    },
+    {
+      "Id": "1.1.1.1.2.28",
+      "Title": "Set 'Network access: Shares that can be accessed anonymously' to 'comcfg dfs$'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "comcfg dfs$",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Services\\LanManServer\\Parameters",
+        "ValueName": "NullSessionShares",
+        "Operator": "Equals",
+        "Expected": "comcfg dfs$"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to comcfg dfs$. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Network access: Shares that can be accessed anonymously",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.28"
+    },
+    {
+      "Id": "1.1.1.1.2.29",
+      "Title": "Set 'Network security: LAN Manager authentication level' to 'Send NTLMv2 response only. Refuse LM & NTLM'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Send NTLMv2 response only. Refuse LM & NTLM",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\Lsa",
+        "ValueName": "LmCompatibilityLevel",
+        "Operator": "Equals",
+        "Expected": "Send NTLMv2 response only. Refuse LM & NTLM"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 5. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Network security: LAN Manager authentication level",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.29"
+    },
+    {
+      "Id": "1.1.1.1.2.31",
+      "Title": "Set 'Network access: Remotely accessible registry paths and sub-paths' as recommended",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Set 'Network access: Remotely accessible registry paths and sub-paths' as recommended",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\SecurePipeServers\\Winreg\\AllowedPaths",
+        "ValueName": "Machine",
+        "Operator": "Equals",
+        "Expected": "Set 'Network access: Remotely accessible registry paths and sub-paths' as recommended"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to System\\CurrentControlSet\\Control\\ProductOptions System\\CurrentControlSet\\Control\\Print\\Printers System\\CurrentControlSet\\Control\\Server Applications System\\CurrentControlSet\\Services\\Eventlog Software\\Microsoft\\OLAP Server Software\\Microsoft\\Windows NT\\CurrentVersion System\\CurrentControlSet\\Control\\ContentIndex System\\CurrentControlSet\\Control\\Terminal Server System\\CurrentControlSet\\Control\\Terminal Server\\UserConfig System\\CurrentControlSet\\Control\\Terminal Server\\DefaultUserConfiguration. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Network access: Remotely accessible registry paths and sub-paths",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.31"
+    },
+    {
+      "Id": "1.1.1.1.2.32",
+      "Title": "Set 'Microsoft network server: Amount of idle time required before suspending session' to '15'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "15",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Services\\LanManServer\\Parameters",
+        "ValueName": "autodisconnect",
+        "Operator": "Equals",
+        "Expected": 15
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 15. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Microsoft network server: Amount of idle time required before suspending session",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.32"
+    },
+    {
+      "Id": "1.1.1.1.2.34",
+      "Title": "Set 'Shutdown: Clear virtual memory pagefile' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\Session Manager\\MemoryManagement",
+        "ValueName": "ClearPageFileAtShutdown",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 0. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Shutdown: Clear virtual memory pagefile",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.34"
+    },
+    {
+      "Id": "1.1.1.1.2.35",
+      "Title": "Set 'Accounts: Limit local account use of blank passwords to console logon only' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\Lsa",
+        "ValueName": "LimitBlankPasswordUse",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Accounts: Limit local account use of blank passwords to console logon only",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.35"
+    },
+    {
+      "Id": "1.1.1.1.2.36",
+      "Title": "Set 'Devices: Unsigned driver installation behavior' to 'Warn but allow installation'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Warn but allow installation",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Microsoft\\Driver Signing",
+        "ValueName": "Policy",
+        "Operator": "Equals",
+        "Expected": "Warn but allow installation"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 01. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Devices: Unsigned driver installation behavior",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.36"
+    },
+    {
+      "Id": "1.1.1.1.2.37",
+      "Title": "Set 'System objects: Default owner for objects created by members of the Administrators group' to 'Object creator'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Object creator",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\Lsa",
+        "ValueName": "nodefaultadminowner",
+        "Operator": "Equals",
+        "Expected": "Object creator"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\System objects: Default owner for objects created by members of the Administrators group",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.37"
+    },
+    {
+      "Id": "1.1.1.1.2.38",
+      "Title": "Set 'MSS: (DisableIPSourceRouting) IP source routing protection level (protects against packet spoofing)' to 'Highest protection, source routing is completely disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Highest protection, source routing is completely disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Services\\Tcpip\\Parameters",
+        "ValueName": "DisableIPSourceRouting",
+        "Operator": "Equals",
+        "Expected": "Highest protection, source routing is completely disabled"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 2. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\MSS: (DisableIPSourceRouting) IP source routing protection level (protects against packet spoofing)",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.38"
+    },
+    {
+      "Id": "1.1.1.1.2.39",
+      "Title": "Set 'Microsoft network client: Digitally sign communications (if server agrees)' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Services\\LanmanWorkstation\\Parameters",
+        "ValueName": "EnableSecuritySignature",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Microsoft network client: Digitally sign communications (if server agrees)",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.39"
+    },
+    {
+      "Id": "1.1.1.1.2.40",
+      "Title": "Set 'Interactive logon: Do not display last user name' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+        "ValueName": "DontDisplayLastUserName",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Interactive logon: Do not display last user name",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.40"
+    },
+    {
+      "Id": "1.1.1.1.2.43",
+      "Title": "Set 'Interactive logon: Smart card removal behavior' to 'Lock Workstation'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Lock Workstation",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Microsoft\\WindowsNT\\CurrentVersion\\Winlogon",
+        "ValueName": "scremoveoption",
+        "Operator": "Equals",
+        "Expected": "Lock Workstation"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Interactive logon: Smart card removal behavior",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.43"
+    },
+    {
+      "Id": "1.1.1.1.2.44",
+      "Title": "Set 'Network security: Do not store LAN Manager hash value on next password change' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\Lsa",
+        "ValueName": "NoLMHash",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Network security: Do not store LAN Manager hash value on next password change",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.44"
+    },
+    {
+      "Id": "1.1.1.1.2.45",
+      "Title": "Set 'Network security: Minimum session security for NTLM SSP based (including secure RPC) clients' to 'Require message integrity,Require message confidentiality,Require NTLMv2 session security,Require 128-bit encryption'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Require message integrity,Require message confidentiality,Require NTLMv2 session security,Require 128-bit encryption",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\Lsa\\MSV1_0",
+        "ValueName": "NTLMMinClientSec",
+        "Operator": "Equals",
+        "Expected": 128
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 537395248. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Network security: Minimum session security for NTLM SSP based (including secure RPC) clients",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.45"
+    },
+    {
+      "Id": "1.1.1.1.2.46",
+      "Title": "Set 'MSS: (AutoAdminLogon) Enable Automatic Logon (not recommended)' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Microsoft\\WindowsNT\\CurrentVersion\\Winlogon",
+        "ValueName": "AutoAdminLogon",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 0. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\MSS: (AutoAdminLogon) Enable Automatic Logon (not recommended)",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.46"
+    },
+    {
+      "Id": "1.1.1.1.2.48",
+      "Title": "Set 'Network access: Do not allow storage of credentials or .NET Passports for network authentication' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\Lsa",
+        "ValueName": "DisableDomainCreds",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Network access: Do not allow storage of credentials or .NET Passports for network authentication",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.48"
+    },
+    {
+      "Id": "1.1.1.1.2.49",
+      "Title": "Set 'Microsoft network server: Digitally sign communications (always)' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Services\\LanManServer\\Parameters",
+        "ValueName": "requiresecuritysignature",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Microsoft network server: Digitally sign communications (always)",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.49"
+    },
+    {
+      "Id": "1.1.1.1.2.50",
+      "Title": "Set 'MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' to '90'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "90",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Security",
+        "ValueName": "WarningLevel",
+        "Operator": "Equals",
+        "Expected": 90
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 90. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.50"
+    },
+    {
+      "Id": "1.1.1.1.2.54",
+      "Title": "Set 'Accounts: Guest account status' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "System Access",
+        "Key": "EnableGuestAccount",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 0. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Accounts: Guest account status",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.54"
+    },
+    {
+      "Id": "1.1.1.1.2.55",
+      "Title": "Set 'System objects: Strengthen default permissions of internal system objects (e.g. Symbolic Links)' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\SessionManager",
+        "ValueName": "ProtectionMode",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\System objects: Strengthen default permissions of internal system objects (e.g. Symbolic Links)",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.55"
+    },
+    {
+      "Id": "1.1.1.1.2.56",
+      "Title": "Set 'Devices: Prevent users from installing printer drivers' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\Print\\Providers\\LanManPrint Services\\Servers",
+        "ValueName": "AddPrinterDrivers",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Devices: Prevent users from installing printer drivers",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.56"
+    },
+    {
+      "Id": "1.1.1.1.2.57",
+      "Title": "Set 'Devices: Allowed to format and eject removable media' to 'Administrators and Interactive Users'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Administrators and Interactive Users",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Microsoft\\WindowsNT\\CurrentVersion\\Winlogon",
+        "ValueName": "AllocateDASD",
+        "Operator": "Equals",
+        "Expected": "Administrators and Interactive Users"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 2. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Devices: Allowed to format and eject removable media",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.57"
+    },
+    {
+      "Id": "1.1.1.1.2.60",
+      "Title": "Set 'Audit: Shut down system immediately if unable to log security audits' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\Lsa",
+        "ValueName": "crashonauditfail",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 0. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Audit: Shut down system immediately if unable to log security audits",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.60"
+    },
+    {
+      "Id": "1.1.1.1.2.61",
+      "Title": "Set 'Network security: LDAP client signing requirements' to 'Negotiate signing'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Negotiate signing",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Services\\LDAP",
+        "ValueName": "LDAPClientIntegrity",
+        "Operator": "Equals",
+        "Expected": "Negotiate signing"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Network security: LDAP client signing requirements",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.61"
+    },
+    {
+      "Id": "1.1.1.1.2.63",
+      "Title": "Set 'System objects: Require case insensitivity for non-Windows subsystems' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Control\\SessionManager\\Kernel",
+        "ValueName": "ObCaseInsensitive",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\System objects: Require case insensitivity for non- Windows subsystems",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.63"
+    },
+    {
+      "Id": "1.1.1.1.2.64",
+      "Title": "Set 'Interactive logon: Prompt user to change password before expiration' to '14'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "14",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Microsoft\\WindowsNT\\CurrentVersion\\Winlogon",
+        "ValueName": "passwordexpirywarning",
+        "Operator": "Equals",
+        "Expected": 14
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 14. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Interactive logon: Prompt user to change password before expiration",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.64"
+    },
+    {
+      "Id": "1.1.1.1.2.65",
+      "Title": "Set 'Microsoft network server: Digitally sign communications (if client agrees)' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\System\\CurrentControlSet\\Services\\LanManServer\\Parameters",
+        "ValueName": "enablesecuritysignature",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Microsoft network server: Digitally sign communications (if client agrees)",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.65"
+    },
+    {
+      "Id": "1.1.1.1.2.66",
+      "Title": "Set 'MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)' to '0'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "0",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Microsoft\\WindowsNT\\CurrentVersion\\Winlogon",
+        "ValueName": "ScreenSaverGracePeriod",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 0. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.66"
+    },
+    {
+      "Id": "1.1.1.1.2.68",
+      "Title": "Set 'Recovery console: Allow automatic administrative logon' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Microsoft\\WindowsNT\\CurrentVersion\\Setup\\RecoveryConsole",
+        "ValueName": "securitylevel",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 0. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options\\Recovery console: Allow automatic administrative logon",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.2.68"
+    },
+    {
+      "Id": "1.1.1.1.3.1",
+      "Title": "Set 'Audit account logon events' to 'Success, Failure'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Success, Failure",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "Event Audit",
+        "Key": "AuditAccountLogon",
+        "Operator": "Equals",
+        "Expected": 3
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Success, Failure. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Audit Policy\\Audit account logon events",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.3.1"
+    },
+    {
+      "Id": "1.1.1.1.3.4",
+      "Title": "Set 'Audit process tracking' to 'No Auditing'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "No Auditing",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "Event Audit",
+        "Key": "AuditProcessTracking",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to No Auditing. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Audit Policy\\Audit process tracking",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.3.4"
+    },
+    {
+      "Id": "1.1.1.1.3.5",
+      "Title": "Set 'Audit privilege use' to 'Failure'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Failure",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "Event Audit",
+        "Key": "AuditPrivilegeUse",
+        "Operator": "Equals",
+        "Expected": 2
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Failure. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Audit Policy\\Audit privilege use",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.3.5"
+    },
+    {
+      "Id": "1.1.1.1.3.6",
+      "Title": "Set 'Audit account management' to 'Success, Failure'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Success, Failure",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "Event Audit",
+        "Key": "AuditAccountManage",
+        "Operator": "Equals",
+        "Expected": 3
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Success, Failure. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Audit Policy\\Audit account management",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.3.6"
+    },
+    {
+      "Id": "1.1.1.1.3.7",
+      "Title": "Set 'Audit policy change' to 'Success'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Success",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "Event Audit",
+        "Key": "AuditPolicyChange",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Success. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Audit Policy\\Audit policy change",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.3.7"
+    },
+    {
+      "Id": "1.1.1.1.3.8",
+      "Title": "Set 'Audit system events' to 'Success'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Success",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "Event Audit",
+        "Key": "AuditSystemEvents",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Success. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Audit Policy\\Audit system events",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.3.8"
+    },
+    {
+      "Id": "1.1.1.1.3.9",
+      "Title": "Set 'Audit logon events' to 'Success, Failure'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Success, Failure",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "Event Audit",
+        "Key": "AuditLogonEvents",
+        "Operator": "Equals",
+        "Expected": 3
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Success, Failure. Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Audit Policy\\Audit logon events",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.1.3.9"
+    },
+    {
+      "Id": "1.1.1.2.1",
+      "Title": "Set 'Maximum application log size' to '16384'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "16384",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Application",
+        "ValueName": "MaxSize",
+        "Operator": "GreaterThanOrEqual",
+        "Expected": 16777216,
+        "ValueType": "DWORD"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 16384. Computer Configuration\\Windows Settings\\Security Settings\\Event Log\\Maximum application log size",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.2.1"
+    },
+    {
+      "Id": "1.1.1.2.5",
+      "Title": "Set 'Maximum system log size' to '16384'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "16384",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\System",
+        "ValueName": "MaxSize",
+        "Operator": "GreaterThanOrEqual",
+        "Expected": 16777216,
+        "ValueType": "DWORD"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 16384. Computer Configuration\\Windows Settings\\Security Settings\\Event Log\\Maximum system log size",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.2.5"
+    },
+    {
+      "Id": "1.1.1.2.6",
+      "Title": "Set 'Prevent local guests group from accessing security log' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Security",
+        "ValueName": "RestrictGuestAccess",
+        "Operator": "Equals",
+        "Expected": 1,
+        "ValueType": "DWORD"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to True. Computer Configuration\\Windows Settings\\Security Settings\\Event Log\\Prevent local guests group from accessing security log",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.2.6"
+    },
+    {
+      "Id": "1.1.1.2.7",
+      "Title": "Set 'Retention method for security log' to 'Overwrites events as needed'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Overwrites events as needed",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Security",
+        "ValueName": "Retention",
+        "Operator": "Equals",
+        "Expected": 0,
+        "ValueType": "DWORD"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to WhenNeeded. Computer Configuration\\Windows Settings\\Security Settings\\Event Log\\Retention method for security log",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.2.7"
+    },
+    {
+      "Id": "1.1.1.2.8",
+      "Title": "Set 'Retention method for application log' to 'Overwrites events as needed'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Overwrites events as needed",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Application",
+        "ValueName": "Retention",
+        "Operator": "Equals",
+        "Expected": 0,
+        "ValueType": "DWORD"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to WhenNeeded. Computer Configuration\\Windows Settings\\Security Settings\\Event Log\\Retention method for application log",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.2.8"
+    },
+    {
+      "Id": "1.1.1.2.9",
+      "Title": "Set 'Maximum security log size' to '81920'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "81920",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Security",
+        "ValueName": "MaxSize",
+        "Operator": "GreaterThanOrEqual",
+        "Expected": 83886080,
+        "ValueType": "DWORD"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 81920. Computer Configuration\\Windows Settings\\Security Settings\\Event Log\\Maximum security log size",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.2.9"
+    },
+    {
+      "Id": "1.1.1.2.10",
+      "Title": "Set 'Prevent local guests group from accessing application log' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Application",
+        "ValueName": "RestrictGuestAccess",
+        "Operator": "Equals",
+        "Expected": 1,
+        "ValueType": "DWORD"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to True. Computer Configuration\\Windows Settings\\Security Settings\\Event Log\\Prevent local guests group from accessing application log",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.2.10"
+    },
+    {
+      "Id": "1.1.1.2.11",
+      "Title": "Set 'Prevent local guests group from accessing system log' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\System",
+        "ValueName": "RestrictGuestAccess",
+        "Operator": "Equals",
+        "Expected": 1,
+        "ValueType": "DWORD"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to True. Computer Configuration\\Windows Settings\\Security Settings\\Event Log\\Prevent local guests group from accessing system log",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.2.11"
+    },
+    {
+      "Id": "1.1.1.2.12",
+      "Title": "Set 'Retention method for system log' to 'Overwrites events as needed'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Overwrites events as needed",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Eventlog\\System",
+        "ValueName": "Retention",
+        "Operator": "Equals",
+        "Expected": 0,
+        "ValueType": "DWORD"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to WhenNeeded. Computer Configuration\\Windows Settings\\Security Settings\\Event Log\\Retention method for system log",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.2.12"
+    },
+    {
+      "Id": "1.1.1.3.9",
+      "Title": "Set 'Computer Browser' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\services\\Browser",
+        "ValueName": "Start",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 4. Computer Configuration\\Windows Settings\\Security Settings\\System Services\\Computer Browser",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.3.9"
+    },
+    {
+      "Id": "1.1.1.3.25",
+      "Title": "Set 'Routing and Remote Access' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\services\\RemoteAccess",
+        "ValueName": "Start",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 4. Computer Configuration\\Windows Settings\\Security Settings\\System Services\\Routing and Remote Access",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.3.25"
+    },
+    {
+      "Id": "1.1.1.3.33",
+      "Title": "Set 'Task Scheduler' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\services\\Schedule",
+        "ValueName": "Start",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 4. Computer Configuration\\Windows Settings\\Security Settings\\System Services\\Task Scheduler",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.3.33"
+    },
+    {
+      "Id": "1.1.1.3.38",
+      "Title": "Set 'SSDP Discovery' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\services\\SSDPSRV",
+        "ValueName": "Start",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 4. Computer Configuration\\Windows Settings\\Security Settings\\System Services\\SSDP Discovery",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.3.38"
+    },
+    {
+      "Id": "1.1.1.4.1.1",
+      "Title": "Set 'Password must meet complexity requirements' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "System Access",
+        "Key": "PasswordComplexity",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to True. Computer Configuration\\Windows Settings\\Security Settings\\Account Policies\\Password Policy\\Password must meet complexity requirements",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.4.1.1"
+    },
+    {
+      "Id": "1.1.1.4.1.2",
+      "Title": "Set 'Minimum password length' to '14'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "14",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "System Access",
+        "Key": "MinimumPasswordLength",
+        "Operator": "Equals",
+        "Expected": 14
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 14. Computer Configuration\\Windows Settings\\Security Settings\\Account Policies\\Password Policy\\Minimum password length",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.4.1.2"
+    },
+    {
+      "Id": "1.1.1.4.1.3",
+      "Title": "Set 'Enforce password history' to '24'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "24",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "System Access",
+        "Key": "PasswordHistorySize",
+        "Operator": "Equals",
+        "Expected": 24
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 24. Computer Configuration\\Windows Settings\\Security Settings\\Account Policies\\Password Policy\\Enforce password history",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.4.1.3"
+    },
+    {
+      "Id": "1.1.1.4.1.4",
+      "Title": "Set 'Maximum password age' to '60' or less",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Set 'Maximum password age' to '60' or less",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "System Access",
+        "Key": "MaximumPasswordAge",
+        "Operator": "LessThanOrEqual",
+        "Expected": 60
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 60 or less. Computer Configuration\\Windows Settings\\Security Settings\\Account Policies\\Password Policy\\Maximum password age",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.4.1.4"
+    },
+    {
+      "Id": "1.1.1.4.1.5",
+      "Title": "Set 'Store passwords using reversible encryption' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "System Access",
+        "Key": "ClearTextPassword",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to False. Computer Configuration\\Windows Settings\\Security Settings\\Account Policies\\Password Policy\\Store passwords using reversible encryption",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.4.1.5"
+    },
+    {
+      "Id": "1.1.1.4.1.6",
+      "Title": "Set 'Minimum password age' to '1' or higher",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "1 or higher",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "System Access",
+        "Key": "MinimumPasswordAge",
+        "Operator": "GreaterThanOrEqual",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 1 or higher. Computer Configuration\\Windows Settings\\Security Settings\\Account Policies\\Password Policy\\Minimum password age",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.4.1.6"
+    },
+    {
+      "Id": "1.1.1.4.2.1",
+      "Title": "Set 'Account lockout threshold' to '50' or less",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Set 'Account lockout threshold' to '50' or less",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "System Access",
+        "Key": "LockoutBadCount",
+        "Operator": "LessThanOrEqual",
+        "Expected": 50
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 50 or less. Computer Configuration\\Windows Settings\\Security Settings\\Account Policies\\Account Lockout Policy\\Account lockout threshold",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.4.2.1"
+    },
+    {
+      "Id": "1.1.1.4.2.2",
+      "Title": "Set 'Reset account lockout counter after' to '15' or higher",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "15 or higher",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "System Access",
+        "Key": "ResetLockoutCount",
+        "Operator": "GreaterThanOrEqual",
+        "Expected": 15
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 15 or higher. Computer Configuration\\Windows Settings\\Security Settings\\Account Policies\\Account Lockout Policy\\Reset account lockout counter after",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.4.2.2"
+    },
+    {
+      "Id": "1.1.1.4.2.3",
+      "Title": "Set 'Account lockout duration' to '15' or higher",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "15 or higher",
+      "Check": {
+        "Type": "SecurityPolicy",
+        "Section": "System Access",
+        "Key": "LockoutDuration",
+        "Operator": "GreaterThanOrEqual",
+        "Expected": 15
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 15 or higher. Computer Configuration\\Windows Settings\\Security Settings\\Account Policies\\Account Lockout Policy\\Account lockout duration",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.1.1.4.2.3"
+    },
+    {
+      "Id": "1.2.1.1.1.1.1",
+      "Title": "Set 'Windows Firewall: Allow ICMP exceptions' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\IcmpSettings",
+        "ValueName": "AllowInboundRouterRequest",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Standard Profile\\Windows Firewall: Allow ICMP exceptions",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.1.1"
+    },
+    {
+      "Id": "1.2.1.1.1.1.2",
+      "Title": "Set 'Windows Firewall: Allow inbound Remote Desktop exceptions' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\Services\\RemoteDesktop",
+        "ValueName": "Enabled",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Standard Profile\\Windows Firewall: Allow inbound Remote Desktop exceptions",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.1.2"
+    },
+    {
+      "Id": "1.2.1.1.1.1.4",
+      "Title": "Set 'Windows Firewall: Prohibit unicast response to multicast or broadcast requests' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile",
+        "ValueName": "DisableUnicastResponsesToMulticastBroadcast",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Standard Profile\\Windows Firewall: Prohibit unicast response to multicast or broadcast requests",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.1.4"
+    },
+    {
+      "Id": "1.2.1.1.1.1.5",
+      "Title": "Set 'Windows Firewall: Allow inbound remote administration exception' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\RemoteAdminSettings",
+        "ValueName": "Enabled",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Standard Profile\\Windows Firewall: Allow inbound remote administration exception",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.1.5"
+    },
+    {
+      "Id": "1.2.1.1.1.1.7",
+      "Title": "Set 'Windows Firewall: Allow inbound file and printer sharing exception' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\Services\\FileAndPrint",
+        "ValueName": "Enabled",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Standard Profile\\Windows Firewall: Allow inbound file and printer sharing exception",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.1.7"
+    },
+    {
+      "Id": "1.2.1.1.1.1.8",
+      "Title": "Set 'Windows Firewall: Allow local port exceptions' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\GloballyOpenPorts",
+        "ValueName": "AllowUserPrefMerge",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Standard Profile\\Windows Firewall: Allow local port exceptions",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.1.8"
+    },
+    {
+      "Id": "1.2.1.1.1.1.11",
+      "Title": "Set 'Windows Firewall: Allow inbound UPnP framework exceptions' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\Services\\UPnPFramework",
+        "ValueName": "Enabled",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Standard Profile\\Windows Firewall: Allow inbound UPnP framework exceptions",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.1.11"
+    },
+    {
+      "Id": "1.2.1.1.1.1.12",
+      "Title": "Set 'Windows Firewall: Protect all network connections' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile",
+        "ValueName": "EnableFirewall",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Standard Profile\\Windows Firewall: Protect all network connections",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.1.12"
+    },
+    {
+      "Id": "1.2.1.1.1.2.1",
+      "Title": "Set 'Windows Firewall: Allow ICMP exceptions' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\IcmpSettings",
+        "ValueName": "AllowInboundRouterRequest",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Domain Profile\\Windows Firewall: Allow ICMP exceptions",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.2.1"
+    },
+    {
+      "Id": "1.2.1.1.1.2.2",
+      "Title": "Set 'Windows Firewall: Allow local program exceptions' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\AuthorizedApplications",
+        "ValueName": "AllowUserPrefMerge",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Domain Profile\\Windows Firewall: Allow local program exceptions",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.2.2"
+    },
+    {
+      "Id": "1.2.1.1.1.2.3",
+      "Title": "Set 'Windows Firewall: Allow inbound UPnP framework exceptions' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\Services\\UPnPFramework",
+        "ValueName": "Enabled",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Domain Profile\\Windows Firewall: Allow inbound UPnP framework exceptions",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.2.3"
+    },
+    {
+      "Id": "1.2.1.1.1.2.7",
+      "Title": "Set 'Windows Firewall: Prohibit unicast response to multicast or broadcast requests' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile",
+        "ValueName": "DisableUnicastResponsesToMulticastBroadcast",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Domain Profile\\Windows Firewall: Prohibit unicast response to multicast or broadcast requests",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.2.7"
+    },
+    {
+      "Id": "1.2.1.1.1.2.8",
+      "Title": "Set 'Windows Firewall: Allow inbound remote administration exception' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\RemoteAdminSettings",
+        "ValueName": "Enabled",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Domain Profile\\Windows Firewall: Allow inbound remote administration exception",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.2.8"
+    },
+    {
+      "Id": "1.2.1.1.1.2.10",
+      "Title": "Set 'Windows Firewall: Protect all network connections' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile",
+        "ValueName": "EnableFirewall",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Domain Profile\\Windows Firewall: Protect all network connections",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.2.10"
+    },
+    {
+      "Id": "1.2.1.1.1.2.11",
+      "Title": "Set 'Windows Firewall: Allow inbound Remote Desktop exceptions' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\Services\\RemoteDesktop",
+        "ValueName": "Enabled",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Domain Profile\\Windows Firewall: Allow inbound Remote Desktop exceptions",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.2.11"
+    },
+    {
+      "Id": "1.2.1.1.1.2.12",
+      "Title": "Set 'Windows Firewall: Allow inbound file and printer sharing exception' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\Services\\FileAndPrint",
+        "ValueName": "Enabled",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Domain Profile\\Windows Firewall: Allow inbound file and printer sharing exception",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.2.12"
+    },
+    {
+      "Id": "1.2.1.1.1.2.13",
+      "Title": "Set 'Windows Firewall: Allow local port exceptions' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\GloballyOpenPorts",
+        "ValueName": "AllowUserPrefMerge",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Network\\Network Connections\\Windows Firewall\\Domain Profile\\Windows Firewall: Allow local port exceptions",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.1.1.1.2.13"
+    },
+    {
+      "Id": "1.2.2.1.1",
+      "Title": "Set 'Restrictions for Unauthenticated RPC clients' to 'Enabled:Authenticated'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled:Authenticated",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\WindowsNT\\Rpc",
+        "ValueName": "RestrictRemoteClients",
+        "Operator": "Equals",
+        "Expected": "Enabled:Authenticated"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Then set the available option to Authenticated. Computer Configuration\\Administrative Templates\\System\\Remote Procedure Call\\Restrictions for Unauthenticated RPC clients",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.2.1.1"
+    },
+    {
+      "Id": "1.2.2.1.2",
+      "Title": "Set 'RPC Endpoint Mapper Client Authentication' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\WindowsNT\\Rpc",
+        "ValueName": "EnableAuthEpResolution",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\System\\Remote Procedure Call\\RPC Endpoint Mapper Client Authentication",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.2.1.2"
+    },
+    {
+      "Id": "1.2.2.2.1",
+      "Title": "Set 'Registry policy processing' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\Windows\\GroupPolicy\\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}",
+        "ValueName": "NoBackgroundPolicy",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\System\\Group Policy\\Registry policy processing",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.2.2.1"
+    },
+    {
+      "Id": "1.2.2.2.2",
+      "Title": "Set 'Process even if the Group Policy objects have not changed' to 'True'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "True",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\Windows\\GroupPolicy\\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}",
+        "ValueName": "NoBackgroundPolicy",
+        "Operator": "Equals",
+        "Expected": "True"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 0. Computer Configuration\\Administrative Templates\\System\\Group Policy:Process even if the Group Policy objects have not changed",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.2.2.2"
+    },
+    {
+      "Id": "1.2.2.2.3",
+      "Title": "Set 'Do not apply during periodic background processing' to 'False'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "False",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\Windows\\GroupPolicy\\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}",
+        "ValueName": "NoBackgroundPolicy",
+        "Operator": "Equals",
+        "Expected": "False"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 0. Computer Configuration\\Administrative Templates\\System\\Group Policy:Do not apply during periodic background processing",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.2.2.3"
+    },
+    {
+      "Id": "1.2.2.3.1",
+      "Title": "Set 'Solicited Remote Assistance' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\policies\\Microsoft\\Windows NT\\TerminalServices",
+        "ValueName": "fAllowToGetHelp",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\System\\Remote Assistance\\Solicited Remote Assistance",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.2.3.1"
+    },
+    {
+      "Id": "1.2.2.3.2",
+      "Title": "Set 'Offer Remote Assistance' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\policies\\Microsoft\\Windows NT\\TerminalServices",
+        "ValueName": "fAllowUnsolicited",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\System\\Remote Assistance\\Offer Remote Assistance",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.2.3.2"
+    },
+    {
+      "Id": "1.2.2.4.1.1",
+      "Title": "Set 'Turn off downloading of print drivers over HTTP' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\WindowsNT\\Printers",
+        "ValueName": "DisableWebPnPDownload",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\System\\Internet Communication Management\\Internet Communication settings\\Turn off downloading of print drivers over HTTP",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.2.4.1.1"
+    },
+    {
+      "Id": "1.2.2.4.1.2",
+      "Title": "Set 'Turn off Windows Update device driver searching' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\Windows\\DriverSearching",
+        "ValueName": "DontSearchWindowsUpdate",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\System\\Internet Communication Management\\Internet Communication settings\\Turn off Windows Update device driver searching",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.2.4.1.2"
+    },
+    {
+      "Id": "1.2.2.4.1.3",
+      "Title": "Set 'Turn off the \"Publish to Web\" task for files and folders' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+        "ValueName": "NoPublishingWizard",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\System\\Internet Communication Management\\Internet Communication settings\\Turn off the \"Publish to Web\" task for files and folders",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.2.4.1.3"
+    },
+    {
+      "Id": "1.2.2.4.1.4",
+      "Title": "Set 'Turn off Internet download for Web publishing and online ordering wizards' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+        "ValueName": "NoWebServices",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\System\\Internet Communication Management\\Internet Communication settings\\Turn off Internet download for Web publishing and online ordering wizards",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.2.4.1.4"
+    },
+    {
+      "Id": "1.2.2.4.1.5",
+      "Title": "Set 'Turn off printing over HTTP' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\WindowsNT\\Printers",
+        "ValueName": "DisableHTTPPrinting",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\System\\Internet Communication Management\\Internet Communication settings\\Turn off printing over HTTP",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.2.4.1.5"
+    },
+    {
+      "Id": "1.2.2.4.1.6",
+      "Title": "Set 'Turn off the Windows Messenger Customer Experience Improvement Program' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\Messenger\\Client",
+        "ValueName": "CEIP",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\System\\Internet Communication Management\\Internet Communication settings\\Turn off the Windows Messenger Customer Experience Improvement Program",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.2.4.1.6"
+    },
+    {
+      "Id": "1.2.2.4.1.7",
+      "Title": "Set 'Turn off Search Companion content file updates' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\SearchCompanion",
+        "ValueName": "DisableContentFileUpdates",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\System\\Internet Communication Management\\Internet Communication settings\\Turn off Search Companion content file updates",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.2.4.1.7"
+    },
+    {
+      "Id": "1.2.3.1.1",
+      "Title": "Set 'Configure Automatic Updates' to '3 - Auto download and notify for install'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "3 - Auto download and notify for install",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU",
+        "ValueName": "NoAutoUpdate",
+        "Operator": "Equals",
+        "Expected": 3
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to 3 - Auto download and notify for install. Computer Configuration\\Administrative Templates\\Windows Components\\Windows Update\\AutoUpdateMode",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.3.1.1"
+    },
+    {
+      "Id": "1.2.3.1.2",
+      "Title": "Set 'Reschedule Automatic Updates scheduled installations' to 'Enabled:10'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled:10",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU",
+        "ValueName": "RescheduleWaitTimeEnabled",
+        "Operator": "Equals",
+        "Expected": 10
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Then set the available option to 10. Computer Configuration\\Administrative Templates\\Windows Components\\Windows Update\\Reschedule Automatic Updates scheduled installations",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.3.1.2"
+    },
+    {
+      "Id": "1.2.3.1.3",
+      "Title": "Set 'No auto-restart with logged on users for scheduled automatic updates installations' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU",
+        "ValueName": "NoAutoRebootWithLoggedOnUsers",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Windows Components\\Windows Update\\No auto-restart with logged on users for scheduled automatic updates installations",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.3.1.3"
+    },
+    {
+      "Id": "1.2.3.1.4",
+      "Title": "Set 'Do not display 'Install Updates and Shut Down' option in Shut Down Windows dialog box' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU",
+        "ValueName": "NoAUShutdownOption",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Windows Components\\Windows Update\\Do not display 'Install Updates and Shut Down' option in Shut Down Windows dialog box",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.3.1.4"
+    },
+    {
+      "Id": "1.2.3.1.5",
+      "Title": "Set 'Do not adjust default option to 'Install Updates and Shut Down' in Shut Down Windows dialog box' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Install Updates and Shut Down' in Shut Down Windows dialog box' to 'Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU",
+        "ValueName": "NoAUAsDefaultShutdownOption",
+        "Operator": "Equals",
+        "Expected": "Install Updates and Shut Down' in Shut Down Windows dialog box' to 'Disabled"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Windows Components\\Windows Update\\Do not adjust default option to 'Install Updates and Shut Down' in Shut Down Windows dialog box",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.3.1.5"
+    },
+    {
+      "Id": "1.2.3.2.1",
+      "Title": "Set 'Always install with elevated privileges' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\Windows\\Installer",
+        "ValueName": "AlwaysInstallElevated",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Windows Components\\Windows Installer\\Always install with elevated privileges",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.3.2.1"
+    },
+    {
+      "Id": "1.2.3.3.1.1",
+      "Title": "Set 'Do not allow passwords to be saved' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\TerminalServices",
+        "ValueName": "DisablePasswordSaving",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\Windows Components\\Remote Desktop Services\\Remote Desktop Connection Client\\Do not allow passwords to be saved",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.3.3.1.1"
+    },
+    {
+      "Id": "1.2.3.3.2.2.1",
+      "Title": "Set 'Do not allow drive redirection' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\TerminalServices",
+        "ValueName": "fDisableCdm",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\Windows Components\\Remote Desktop Services\\Remote Desktop Session Host\\Device and Resource Redirection\\Do not allow drive redirection",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.3.3.2.2.1"
+    },
+    {
+      "Id": "1.2.3.3.2.3.1",
+      "Title": "Set 'Always prompt for password upon connection' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\TerminalServices",
+        "ValueName": "fPromptForPassword",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\Windows Components\\Remote Desktop Services\\Remote Desktop Session Host\\Security\\Always prompt for password upon connection",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.3.3.2.3.1"
+    },
+    {
+      "Id": "1.2.3.3.2.3.2",
+      "Title": "Set 'Set client connection encryption level' to 'Enabled:High Level'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled:High Level",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\TerminalServices",
+        "ValueName": "MinEncryptionLevel",
+        "Operator": "Equals",
+        "Expected": "Enabled:High Level"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Then set the available option to High Level. Computer Configuration\\Administrative Templates\\Windows Components\\Remote Desktop Services\\Remote Desktop Session Host\\Security\\Set client connection encryption level",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.3.3.2.3.2"
+    },
+    {
+      "Id": "1.2.3.4.1",
+      "Title": "Set 'Turn off Autoplay' to 'Enabled:All drives'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled:All drives",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+        "ValueName": "NoDriveTypeAutoRun",
+        "Operator": "Equals",
+        "Expected": "Enabled:All drives"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Then set the available option to All drives. Computer Configuration\\Administrative Templates\\Windows Components\\AutoPlay Policies\\Turn off Autoplay",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.3.4.1"
+    },
+    {
+      "Id": "1.2.3.5.1.1",
+      "Title": "Set 'Report operating system errors' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\PCHealth\\ErrorReporting",
+        "ValueName": "IncludeKernelFaults",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\Windows Components\\Windows Error Reporting\\Advanced Error Reporting Settings\\Report operating system errors",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.3.5.1.1"
+    },
+    {
+      "Id": "1.2.3.5.2",
+      "Title": "Set 'Display Error Notification' to 'Disabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\PCHealth\\ErrorReporting",
+        "ValueName": "ShowUI",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. Computer Configuration\\Administrative Templates\\Windows Components\\Windows Error Reporting\\Display Error Notification",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.3.5.2"
+    },
+    {
+      "Id": "1.2.3.6.1",
+      "Title": "Set 'Disable remote Desktop Sharing' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\Conferencing",
+        "ValueName": "NoRDS",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\Windows Components\\NetMeeting\\Disable remote Desktop Sharing",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.3.6.1"
+    },
+    {
+      "Id": "1.2.3.7.1",
+      "Title": "Set 'Do not allow Windows Messenger to be run' to 'Enabled'",
+      "Category": "Account Policies",
+      "SubCategory": "Password and Account Lockout Policy",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\Messenger\\Client",
+        "ValueName": "PreventRun",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Computer Configuration\\Administrative Templates\\Windows Components\\Windows Messenger\\Do not allow Windows Messenger to be run",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 1.2.3.7.1"
+    },
+    {
+      "Id": "2.1.1.1.1",
+      "Title": "Set 'Prompt for password on resume from hibernate / suspend' to 'Enabled'",
+      "Category": "Local Policies",
+      "SubCategory": "User Rights and Security Options",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKU:\\Software\\Policies\\Microsoft\\Windows\\System\\Power",
+        "ValueName": "PromptPasswordOnResume",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. User Configuration\\Administrative Templates\\System\\Power Management\\Prompt for password on resume from hibernate / suspend",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 2.1.1.1.1"
+    },
+    {
+      "Id": "2.1.2.2.1",
+      "Title": "Set 'Hide mechanisms to remove zone information' to 'Enabled'",
+      "Category": "Local Policies",
+      "SubCategory": "User Rights and Security Options",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Attachments",
+        "ValueName": "HideZoneInfoOnProperties",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. User Configuration\\Administrative Templates\\Windows Components\\Attachment Manager\\Hide mechanisms to remove zone information",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 2.1.2.2.1"
+    },
+    {
+      "Id": "2.1.2.2.2",
+      "Title": "Set 'Notify antivirus programs when opening attachments' to 'Enabled'",
+      "Category": "Local Policies",
+      "SubCategory": "User Rights and Security Options",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKU:\\<SID>\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Attachments",
+        "ValueName": "ScanWithAntiVirus",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. User Configuration\\Administrative Templates\\Windows Components\\Attachment Manager\\Notify antivirus programs when opening attachments",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 2.1.2.2.2"
+    },
+    {
+      "Id": "2.1.2.2.3",
+      "Title": "Set 'Do not preserve zone information in file attachments' to 'Disabled'",
+      "Category": "Local Policies",
+      "SubCategory": "User Rights and Security Options",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Disabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKU:\\<SID>\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Attachments",
+        "ValueName": "SaveZoneInformation",
+        "Operator": "Equals",
+        "Expected": 0
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Disabled. User Configuration\\Administrative Templates\\Windows Components\\Attachment Manager\\Do not preserve zone information in file attachments",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 2.1.2.2.3"
+    },
+    {
+      "Id": "2.1.3.1.1",
+      "Title": "Set 'Screen saver timeout' to 'Enabled:900'",
+      "Category": "Local Policies",
+      "SubCategory": "User Rights and Security Options",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled:900",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKCU:\\Software\\Policies\\Microsoft\\Windows\\ControlPanel\\Desktop",
+        "ValueName": "ScreenSaveTimeOut",
+        "Operator": "Equals",
+        "Expected": 900
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Then set the available option to a value less than or equal to 900. User Configuration\\Administrative Templates\\Control Panel\\Personalization\\Screen saver timeout",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 2.1.3.1.1"
+    },
+    {
+      "Id": "2.1.3.1.2",
+      "Title": "Set 'Password protect the screen saver' to 'Enabled'",
+      "Category": "Local Policies",
+      "SubCategory": "User Rights and Security Options",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKU:\\<SID>\\Software\\Policies\\Microsoft\\Windows\\ControlPanel\\Desktop",
+        "ValueName": "ScreenSaverIsSecure",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. User Configuration\\Administrative Templates\\Control Panel\\Personalization\\Password protect the screen saver",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 2.1.3.1.2"
+    },
+    {
+      "Id": "2.1.3.1.3",
+      "Title": "Set 'Enable screen saver' to 'Enabled'",
+      "Category": "Local Policies",
+      "SubCategory": "User Rights and Security Options",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKU:\\<SID>\\Software\\Policies\\Microsoft\\Windows\\ControlPanel\\Desktop",
+        "ValueName": "ScreenSaveActive",
+        "Operator": "Equals",
+        "Expected": 1
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. User Configuration\\Administrative Templates\\Control Panel\\Personalization\\Enable screen saver",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 2.1.3.1.3"
+    },
+    {
+      "Id": "2.1.3.1.4",
+      "Title": "Set 'Force specific screen saver' to 'Enabled:scrnsave.scr'",
+      "Category": "Local Policies",
+      "SubCategory": "User Rights and Security Options",
+      "Severity": "High",
+      "Profile": "Level 1 (L1)",
+      "Automated": true,
+      "ExpectedValue": "Enabled:scrnsave.scr",
+      "Check": {
+        "Type": "Registry",
+        "Path": "HKCU:\\Software\\Policies\\Microsoft\\Windows\\ControlPanel\\Desktop",
+        "ValueName": "SCRNSAVE.EXE",
+        "Operator": "Equals",
+        "Expected": "Enabled:scrnsave.scr"
+      },
+      "Remediation": "To implement the recommended configuration state, set the following Group Policy setting to Enabled. Then set the available option to scrnsave.scr. User Configuration\\Administrative Templates\\Control Panel\\Personalization\\Force specific screen saver",
+      "Reference": "CIS Microsoft Windows XP Benchmark v3.1.0, control 2.1.3.1.4"
+    }
+  ]
+}

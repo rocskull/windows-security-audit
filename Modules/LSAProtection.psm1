@@ -2,3 +2,10 @@ Set-StrictMode -Version Latest
 Import-Module (Join-Path $PSScriptRoot 'SecurityAuditUtilities.psm1') -Force -ErrorAction Stop
 function Invoke-Audit {[CmdletBinding()][OutputType([pscustomobject])]param();$l='HKLM:\SYSTEM\CurrentControlSet\Control\Lsa';$a=@(@('LSA-001','RunAsPPL',$l,'RunAsPPL'),@('LSA-002','LSASS Protection',$l,'RunAsPPLBoot'),@('LSA-003','LSA Plugins',"$l",'Authentication Packages'),@('LSA-004','WDigest',"$l\WDigest",'UseLogonCredential'),@('LSA-005','Credential Delegation','HKLM:\SOFTWARE\Policies\Microsoft\Windows\CredentialsDelegation','AllowFreshCredentials'),@('LSA-006','Cached Logons','HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon','CachedLogonsCount'));foreach($i in $a){$v=Get-CISRegistryValue $i[2] $i[3];New-CISAuditFinding $i[0] 'LSA Protection' 'Local Security Authority' $i[1] 'Setting is secure and reviewed.' ([string]$v) $(if($null -eq $v){'WARNING'}else{'PASS'}) High "$($i[3])=$v" 'Review LSA protection, plug-ins, credential delegation, and cached-logon policy.'}}
 Export-ModuleMember -Function Invoke-Audit
+<#
+.SYNOPSIS
+    Provides legacy Local Security Authority protection checks.
+.DESCRIPTION
+    Retained for compatibility with framework v1 and not executed by the v2
+    data-driven CIS entry point.
+#>

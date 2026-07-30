@@ -2,3 +2,10 @@ Set-StrictMode -Version Latest
 Import-Module (Join-Path $PSScriptRoot 'SecurityAuditUtilities.psm1') -Force -ErrorAction Stop
 function Invoke-Audit {[CmdletBinding()][OutputType([pscustomobject])]param();$logs=@(@('ELOG-001','Security Log','Security'),@('ELOG-002','Application Log','Application'),@('ELOG-003','System Log','System'),@('ELOG-004','PowerShell Log','Windows PowerShell'),@('ELOG-005','Windows Defender Log','Microsoft-Windows-Windows Defender/Operational'),@('ELOG-006','PowerShell Operational Log','Microsoft-Windows-PowerShell/Operational'));foreach($l in $logs){try{$x=Get-WinEvent -ListLog $l[2] -ErrorAction Stop;$a="Enabled=$($x.IsEnabled); MaximumSize=$($x.MaximumSizeInBytes); LogMode=$($x.LogMode)";New-CISAuditFinding $l[0] 'Event Logs' 'Windows Event Log' $l[1] 'Enabled with a defined maximum size and overwrite/retention policy' $a $(if($x.IsEnabled -and $x.MaximumSizeInBytes -gt 0){'PASS'}else{'FAIL'}) Medium $a 'Enable the log and configure an appropriate size and retention policy.'}catch{New-CISAuditFinding $l[0] 'Event Logs' 'Windows Event Log' $l[1] 'Log configuration is available.' 'Unavailable' WARNING Medium $_.Exception.Message 'Verify the event log is installed and accessible.'}};$p='HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell';foreach($i in @(@('ELOG-007','Script Block Logging','ScriptBlockLogging','EnableScriptBlockLogging'),@('ELOG-008','Module Logging','ModuleLogging','EnableModuleLogging'),@('ELOG-009','Protected Event Logging','ProtectedEventLogging','EnableProtectedEventLogging'))){$v=Get-CISRegistryValue "$p\$($i[2])" $i[3];New-CISAuditFinding $i[0] 'Event Logs' 'PowerShell Logging' $i[1] 'Enabled' ([string]$v) (Test-CISBool $v) High ("$($i[3])=$v") 'Enable the corresponding PowerShell logging policy.'}}
 Export-ModuleMember -Function Invoke-Audit
+<#
+.SYNOPSIS
+    Provides legacy Windows event-log review checks.
+.DESCRIPTION
+    Retained for compatibility with framework v1 and not executed by the v2
+    data-driven CIS entry point.
+#>

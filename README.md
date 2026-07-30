@@ -1,129 +1,194 @@
-# Windows Configuration Review Framework
+# Windows CIS Configuration Assessment Framework
 
-A modular, read-only PowerShell framework for reviewing Windows security configuration. It gathers evidence, returns structured findings, and generates HTML, CSV, JSON, and Excel reports. It does not change Windows configuration.
+A read-only, modular PowerShell framework that detects the local Windows
+release, join mode, and server role; selects a versioned CIS benchmark
+definition; executes its automated controls; and creates HTML, Excel, CSV, and
+JSON reports.
 
-This tool performs read-only Windows security checks aligned with CIS Benchmark guidance and provides remediation recommendations. It is intended to support security reviews and does not replace a formal CIS compliance assessment.
+Benchmark values live in JSON, not PowerShell. Updating assessment content
+therefore means replacing a definition and its catalog entry rather than
+rewriting the audit engine.
+
+## Included definitions
+
+| Target and variant | CIS version | Automated checks |
+|---|---:|---:|
+| Windows 11 Enterprise | 5.1.0 | 533 |
+| Windows 11 Stand-alone | 5.0.0 | 486 |
+| Windows 10 Enterprise | 4.0.0 | 488 |
+| Windows 10 Stand-alone | 4.0.0 | 448 |
+| Windows 10 Enterprise Release 1703 (archive) | 1.3.0 | 406 inferred |
+| Windows 8.1 Workstation (archive) | 2.4.0 | 365 inferred |
+| Windows 8 (archive) | 1.0.0 | 327 |
+| Windows 7 Workstation (archive) | 3.2.0 | 343 inferred |
+| Windows XP (archive) | 3.1.0 | 156 |
+| Windows Server 2025 | 2.1.0 | 426 |
+| Windows Server 2022 | 5.1.0 | 406 |
+| Windows Server 2022 Stand-alone | 2.0.0 | 340 |
+| Windows Server 2022 STIG | 2.0.0 | 462 |
+| Windows Server 2019 | 5.0.0 | 398 |
+| Windows Server 2019 Stand-alone | 3.0.0 | 363 |
+| Windows Server 2019 STIG | 3.0.0 | 450 |
+| Windows Server 2016 | 4.0.0 | 420 |
+| Windows Server 2016 STIG | 3.0.0 | 443 |
+| Windows Server 2012 R2 (archive) | 3.0.0 | 361 |
+| Windows Server 2008 non-R2 (archive) | 3.3.0 | 316 |
+| Windows Server 2003 (archive) | 3.1.0 | 119 |
+| Microsoft Defender Antivirus supplemental benchmark | 1.0.0 | 59 |
+
+The 22 definitions contain 8,115 automated checks in total. The modern and
+imported PDFs explicitly label Automated/Manual recommendations; generated
+counts match those labels exactly. The Windows 7, Windows 8.1, and Windows 10
+1703 PDFs use older Scored/Not Scored terminology. For those three files, the
+framework includes every recommendation with a deterministic registry, policy,
+account, audit, or installed-product test. Organization-defined assignments
+without a prescribed expected value are listed in
+`Benchmarks/generation-unresolved.json` and are not assigned invented values.
+
+The requested Windows 11 Enterprise v3.0.0 PDF was not supplied. The framework
+uses the attached v5.1.0 PDF. A validated v3.0.0 JSON can be added without an
+engine change.
+
+## Requirements and archived-runtime limits
+
+- Windows PowerShell 5.1 or PowerShell 7; PowerShell 7 is preferred.
+- Administrator elevation is strongly recommended.
+- `secedit.exe` and `auditpol.exe` are required for policy controls.
+
+Local execution is supported where PowerShell 5.1 or 7 is available: Windows 7
+SP1, Windows 8.1, Windows 10, Windows 11, and Windows Server 2012 R2 through
+Server 2025. Definitions are included for XP, Windows 8, Server 2003, and
+Server 2008 non-R2 because their PDFs were supplied, but those operating systems
+cannot host this PowerShell 5.1 framework. They remain usable as versioned
+definition/reference artifacts.
+
+Unreadable evidence returns `WARNING`; the framework never silently converts
+access-denied or provider errors into configuration failures.
 
 ## Quick start
 
-1. Open PowerShell in this project directory.
-2. For the fullest set of checks, open PowerShell **as Administrator**.
-3. Run:
+Run from an elevated PowerShell window:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Invoke-CISAudit.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\Invoke-CISAudit.ps1 `
+  -OutputPath C:\Reports
 ```
 
-Reports and execution logs are written to the selected timestamped run folder. The execution-policy bypass is scoped to this one process; it does not change the device execution policy.
+The timestamped output folder contains HTML, XLSX, CSV, JSON, and log files.
+When `-OutputPath` is omitted, the script prompts and defaults to `C:\Reports`.
 
-## Choosing an output folder
+List the complete catalog:
 
-At the start of an interactive audit, enter an output directory when prompted:
+```powershell
+.\Invoke-CISAudit.ps1 -ListBenchmarks
+```
+
+Run the applicable STIG variant:
+
+```powershell
+.\Invoke-CISAudit.ps1 -BenchmarkVariant STIG -OutputPath C:\Reports
+```
+
+Add the Defender Antivirus benchmark to the OS assessment:
+
+```powershell
+.\Invoke-CISAudit.ps1 -IncludeDefenderBenchmark -OutputPath C:\Reports
+```
+
+Use an explicit definition:
+
+```powershell
+.\Invoke-CISAudit.ps1 `
+  -BenchmarkPath .\Benchmarks\CIS_Server2022_Standalone_2.0.0.json `
+  -OutputPath C:\Reports
+```
+
+## Automatic selection
+
+The platform module uses product type and build number to distinguish:
+
+- Windows 11: build 22000 or newer
+- Windows 10: builds 10240-21999
+- Windows 8.1: build 9600
+- Windows 8: build 9200
+- Windows 7: builds 7600-7601
+- Server 2025: builds 26100-29999
+- Server 2022: build 20348
+- Server 2019: build 17763
+- Server 2016: build 14393
+- Server 2012 R2: build 9600 with server product type
+- Server 2008 non-R2: builds 6000-6002
+
+`-BenchmarkVariant Auto` applies these rules:
+
+- Active Directory or Entra-joined workstation: `Enterprise`
+- Workgroup workstation: `Standalone`, falling back to `General` for archived
+  benchmarks without separate variants
+- Domain Controller or domain Member Server: `Standard`
+- Workgroup server: `Standalone`
+- STIG: explicit `-BenchmarkVariant STIG`
+
+Controls labeled DC-only or MS-only in a shared server benchmark are preserved
+and reported as `NOT APPLICABLE` on the other role.
+
+## Results and reports
+
+Statuses are `PASS`, `FAIL`, `WARNING`, and `NOT APPLICABLE`. Compliance is
+calculated as `PASS / (PASS + FAIL)`; warnings and not-applicable findings are
+reported separately.
+
+Every finding contains the control ID/title, category, severity, CIS profile,
+expected and actual values, evidence, remediation, benchmark name/version/file,
+timestamp, computer, and audit user. When Defender is included, HTML, Excel,
+and JSON list both selected benchmark versions; CSV includes benchmark identity
+on every row.
+
+## Architecture
 
 ```text
-Enter output directory (Press Enter for default C:\Reports):
+windows-security-audit/
+|-- Invoke-CISAudit.ps1
+|-- Configuration.json
+|-- Benchmarks/
+|   |-- BenchmarkCatalog.json
+|   |-- CIS_Windows11_5.1.0.json
+|   |-- CIS_Server2025_2.1.0.json
+|   `-- ...
+|-- Modules/
+|   |-- Platform.psm1
+|   |-- BenchmarkEngine.psm1
+|   |-- Result.psm1
+|   `-- ReportGenerator.psm1
+|-- Tools/
+|   `-- Build-BenchmarkDefinitions.py
+`-- docs/
+    |-- BenchmarkDefinitionSchema.md
+    `-- Modules.md
 ```
 
-Press Enter to use `C:\Reports`, or enter another absolute or relative path. The framework validates and creates the selected base folder when necessary. It then creates one timestamped subfolder, for example `C:\Reports\2026-07-28_221530`, and writes the HTML, CSV, JSON, Excel reports and audit log there.
+Legacy topic modules remain for compatibility and reference, but the entry
+point executes only definition-driven controls so advisory checks cannot alter
+the CIS compliance score.
 
-The full run folder is displayed before checks begin. If the path is invalid or cannot be created, the framework explains the error and prompts again.
+## Updating definitions
 
-To avoid the prompt, pass `-OutputPath`. It accepts local paths, UNC paths, and relative paths:
+1. Add or replace the versioned JSON definition.
+2. Ensure `Variant`, product type, and build range are correct.
+3. Include every automated recommendation and set the exact
+   `AutomatedControlCount`.
+4. Run `-ListBenchmarks`, then validate and test the selected definition.
 
-```powershell
-.\Invoke-CISAudit.ps1 -OutputPath 'D:\Client Reviews'
-.\Invoke-CISAudit.ps1 -O 'D:\Client Reviews'
-.\Invoke-CISAudit.ps1 -OutputPath '\\Server01\Audits'
-.\Invoke-CISAudit.ps1 -OutputPath '.\Reports'
-```
+The catalog stores SHA-256 hashes. If a JSON file is added or replaced without
+updating the catalog, the framework detects the mismatch and discovers metadata
+directly from the definitions, so no PowerShell change is required. Rebuilding
+the catalog with the maintainer generator restores the faster indexed startup
+path.
 
-When `-OutputPath` (or its short alias `-O`) is omitted, the script prompts for a location and uses `C:\Reports` when Enter is pressed.
+The engine rejects missing fields, duplicate IDs, unsupported providers, and
+declared-count mismatches before evidence collection. See
+[`docs/BenchmarkDefinitionSchema.md`](docs/BenchmarkDefinitionSchema.md).
 
-To list discovered modules without running them:
-
-```powershell
-.\Invoke-CISAudit.ps1 -ListModules
-```
-
-To use another configuration file:
-
-```powershell
-.\Invoke-CISAudit.ps1 -ConfigurationFile .\Configuration.json
-```
-
-## Execution modes and result status
-
-The report records whether the audit ran as a Standard User or Administrator, as well as hostname, domain, Windows version, PowerShell version, and execution policy.
-
-- `PASS` — the control meets its expectation.
-- `FAIL` — the control does not meet its expectation.
-- `WARNING` — an advisory, incomplete assessment, or a setting requiring review.
-- `NOT APPLICABLE` — the feature is not installed or does not apply to this device.
-- `NOT EXECUTED` — the check could not run, for example because elevation is required.
-
-Run as Administrator to avoid permission-related `WARNING` or `NOT EXECUTED` results for BitLocker, audit policy, security policy, service, and protected event-log checks.
-
-## Features
-
-- Modular architecture using PowerShell modules
-- Audit-only mode (no system changes)
-- PASS / FAIL / WARNING / NOT APPLICABLE outcomes
-- Export reports to HTML, CSV, JSON, and Excel
-- Detailed logging and evidence collection
-- Remediation recommendations
-- Designed for PowerShell 5.1 and PowerShell 7 compatibility
-
-## Project Structure
-
-- `Invoke-CISAudit.ps1` - main entry point
-- `Modules/` - future audit modules and shared framework components
-- `Reports/` - generated report output (kept out of source control except its placeholder)
-- `Logs/` - execution logs (kept out of source control except its placeholder)
-- `Benchmarks/` - benchmark definitions and references
-- `Configuration.json` - configuration and audit preferences
-
-## Intended Result Contract
-
-Future checks will return one of the following statuses:
-
-- `PASS` — the configuration meets the benchmark requirement.
-- `FAIL` — the configuration does not meet the benchmark requirement.
-- `WARNING` — the result needs review or could not be conclusively assessed.
-- `NOT APPLICABLE` — the requirement does not apply to the audited system.
-
-Each result is intended to include benchmark metadata, severity, collected evidence, and an actionable remediation recommendation. Checks must remain read-only.
-
-## Running the Scaffold
-
-```powershell
-.\Invoke-CISAudit.ps1
-```
-
-The command initializes framework logging and module discovery, but creates no
-reports and performs no audit checks until audit modules are added.
-
-## Module Contract
-
-The core framework imports every `.psm1` file below `Modules/`. Audit modules
-must define an `Invoke-Audit` function and return one or more `[pscustomobject]`
-result objects. Support modules, such as `Result.psm1`, are imported but not
-executed as checks. The framework records module errors and execution time,
-then continues with the remaining modules. No audit modules are included in
-this project yet.
-
-## Registry Definition Format
-
-`Modules/Registry.psm1` evaluates registry settings from JSON; it contains no
-hardcoded controls. It automatically loads
-`Benchmarks/RegistryChecks.json`. Each entry in its `Checks` array must include
-`ControlID`, `Category`, `SubCategory`, `Title`, `RegistryHive`,
-`RegistryPath`, `ValueName`, `Comparison`, `Expected`, `Severity`, `Reference`,
-and `Remediation`. `RegistryPath` is relative to `RegistryHive`; for example,
-use `HKLM` and `SOFTWARE\Example`. `Expected` is not used by the `Exists` and
-`NotExists` comparisons.
-
-## Next Steps
-
-1. Add audit module definitions to `Modules/`
-2. Implement configuration loading and report export logic in `Invoke-CISAudit.ps1`
-3. Add read-only checks for Windows configuration items
+All providers are read-only. This framework supports configuration assessment
+and evidence collection; it does not constitute CIS certification or replace
+organizational risk analysis.

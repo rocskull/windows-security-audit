@@ -14,3 +14,10 @@ function Invoke-Audit {
     $serverFields=@('RequireSecuritySignature','EnableSecuritySignature','EnableSMB1Protocol','EncryptData');$serverText=@($serverFields|ForEach-Object{'{0}={1}' -f $_,(Get-SmbProperty $server $_)});New-SmbResult -ControlID 'SMB-006' -Title 'SMB Server Settings' -Expected 'Server settings are reviewed and secure' -Actual ($serverText -join '; ') -Status PASS -Severity Medium -Evidence ($serverText -join '; ') -Remediation 'Review SMB server settings, disable SMBv1, and require signing.'
 }
 Export-ModuleMember -Function Invoke-Audit
+<#
+.SYNOPSIS
+    Provides legacy Server Message Block security checks.
+.DESCRIPTION
+    Retained for compatibility with framework v1. The v2 CIS entry point reads
+    SMB requirements from the selected benchmark definition.
+#>

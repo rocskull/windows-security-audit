@@ -39,3 +39,10 @@ function Invoke-Audit {
     New-FirewallResult -ControlID 'FW-007' -Title 'Firewall Notifications' -Expected 'Notifications enabled for every profile' -Actual ($notifications -join '; ') -Status $(if ($profiles.Count -eq 3 -and @($profiles | Where-Object { -not $_.NotifyOnListen }).Count -eq 0) {'PASS'} else {'FAIL'}) -Severity Low -Evidence ('NotifyOnListen: {0}.' -f ($notifications -join '; ')) -Remediation 'Enable firewall notifications for blocked inbound connections.'
 }
 Export-ModuleMember -Function Invoke-Audit
+<#
+.SYNOPSIS
+    Provides legacy Microsoft Defender Firewall review checks.
+.DESCRIPTION
+    Retained for compatibility with framework v1. The v2 CIS entry point reads
+    firewall requirements from the selected benchmark definition.
+#>

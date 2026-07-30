@@ -10,3 +10,10 @@ function Invoke-Audit {
     try{$tpm=Get-Tpm -ErrorAction Stop;$props=@(@('BL-004','TPM Available','TpmPresent'),@('BL-005','TPM Ready','TpmReady'),@('BL-006','TPM Activated','TpmActivated'),@('BL-007','TPM Ownership','TpmOwned'));foreach($item in $props){$value=$tpm.($item[2]);New-BitLockerResult -ControlID $item[0] -Title $item[1] -Expected 'True' -Actual ([string]$value) -Status $(if($value){'PASS'}else{'FAIL'}) -Severity High -Evidence ('{0}: {1}.' -f $item[2],$value) -Remediation ('Initialize, activate, and provision the TPM as required for BitLocker.')}}catch{foreach($item in @(@('BL-004','TPM Available'),@('BL-005','TPM Ready'),@('BL-006','TPM Activated'),@('BL-007','TPM Ownership'))){New-BitLockerResult -ControlID $item[0] -Title $item[1] -Expected 'TPM status is available.' -Actual 'Unavailable' -Status WARNING -Severity Medium -Evidence $_.Exception.Message -Remediation 'Verify that a compatible TPM is available and initialized.'}}
 }
 Export-ModuleMember -Function Invoke-Audit
+<#
+.SYNOPSIS
+    Provides legacy BitLocker configuration review checks.
+.DESCRIPTION
+    Retained for compatibility with framework v1. The v2 CIS entry point reads
+    BitLocker recommendations from the selected benchmark definition.
+#>
